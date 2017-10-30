@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Update Verification</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a> <span class="divider">/</span></li>
+									<li><a href="/docs">REST Resources</a></li>
+										</ul>
+
+			<h1>Update Verification</h1>
+<p>Update and re-submit an existing verification request.
+ The previous response to this request must have a result of <code>null</code>, otherwise update is disallowed. Only identity data can be changed (parameter names as described by <a href="/docs/field/listFields.html">List Fields</a>). Organization id/name or other configuration supplied with the original request is not modifiable.</p>
+
+
+<h2>Request Details</h2>
+
+<h3>HTTP Method(s)</h3>
+<p>
+  <code>POST</code>
+</p>
+
+<h3>Resource URI</h3>
+<p class="env">
+	<code id="sandboxUri" class="sandbox block">https://services-sandbox.sheerid.com/rest/0.5/verification/{requestId}</code>
+	<code id="productionUri" class="production block" style="display: none">https://services.sheerid.com/rest/0.5/verification/{requestId}</code>
+</p>
+<p class="btn-group env-toggle">
+	<button class="btn btn-mini active sandbox">Sandbox</button>
+	<button class="btn btn-mini production">Production</button>
+</p>
+
+<h3>Accepted Content Type(s)</h3>
+<p>
+  <code>application/x-www-form-urlencoded</code>
+</p>
+
+<h3>Path Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr>requestId</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		the identifier returned with the original request
+					</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr>BIRTH_DATE</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Complete birth date of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>EMAIL</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		An email address, preferably the one issued by the organization being verified
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>FIRST_NAME</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Given name of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>LAST_NAME</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Surname/family name of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>STATUS_START_DATE</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		The date on which the affiliation being verified began. For VETERAN, this is the date of discharge/end of active duty status.
+					</td>
+</tr>
+</table>
+<h3>Rate Limit(s)</h3>
+<p>Please review the <a href="/rate-limits.html">Rate Limiting Documentation</a> for more information about rate limits and related HTTP response headers.</p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">Scope</th>
+	<th>Limit</th>
+	<th>Time Window (Rolling)</th>
+</tr>
+<tr>
+  <td>account</td>
+  <td>50</td>
+  <td>		    15 minutes
+</td>
+</tr>
+</table>
+
+<h2>Response Details</h2>
+
+<h3>Expected Response</h3>
+<p>
+  A single <a href="/docs/model.html#VerificationResponse">VerificationResponse</a> object
+</p>
+
+<h3>Response Content Type(s)</h3>
+<p>
+  <code>application/json</code>
+</p>
+
+<h3>Errors (HTTP Status Codes)</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">HTTP Status Code</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>the request cannot be updated, reasons include:
+                                               <ul>
+                                               <li>Request is in <code>PENDING</code> status</li>
+                                               <li>A response with a conclusive (<code>true</code> or <code>false</code>) result has been obtained</li>
+                                               </ul></td>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>data provided is not valid, reasons include:
+                                               <ul>
+                                               <li>Date is not properly formatted</li>
+                                               <li>Birth date supplied indicates the individual attempting to verify is under 13 years old</li>
+                                               <li>Email address supplied is not a valid format</li>
+                                               <li>Phone number supplied is not a valid format</li>
+                                               </ul></td>
+</tr>
+<tr>
+	<td class="name"><code>403</td>
+	<td>the request cannot be updated because it is inactive (older than 7 days)</td>
+</tr>
+<tr>
+	<td class="name"><code>429</td>
+	<td>rate limit policy has been exceeded</td>
+</tr>
+</table>
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

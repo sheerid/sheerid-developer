@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Verify App Config</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a></li>
+						</ul>
+
+			<h1>Verify App Config</h1>
+
+<p>Settings that control the behavior and appearance of SheerID-hosted verification applications.</p>
+
+<table class="table table-striped table-bordered sheerid-green">
+	<tr>
+			<th>Field Name</th>
+			<th>Format</th>
+			<th>Description</th>
+			<th>Default Value</th>
+		</tr>
+			<tr>
+						<td><code>affiliationTypes</code></td>
+						<td>One or more string values separated by a semicolon</td>
+						<td>List of affiliation type groups to display as choices for the user to select their affiliation.</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>allowRequiredFieldsFromSources</code></td>
+						<td>boolean</td>
+						<td></td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>bundle-*</code></td>
+						<td>one or more key &rarr; value pairs</td>
+						<td>Define custom messages in localization bundle format</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>defaultAffiliationTypes</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>STUDENT_COLLEGE_BOUND</code>, <code>STUDENT_FULL_TIME</code>, <code>STUDENT_PART_TIME</code>, <code>GRADUATE</code>, <code>ALUMNUS</code>, <code>FACULTY</code>, <code>EMPLOYEE</code>, <code>RESELLER</code>, <code>NON_PROFIT</code>, <code>ACTIVE_DUTY</code>, <code>VETERAN</code>, <code>RESERVIST</code>, <code>MILITARY_FAMILY</code>, <code>MILITARY_RETIREE</code>, <code>DISABLED_VETERAN</code>, <code>CIVILIAN_EMPLOYEE</code>, <code>FIREFIGHTER</code>, <code>POLICE</code>, <code>EMT</code>, <code>NURSE</code>, <code>MEMBER</code>, <code>CUSTOMER</code>, <code>OWNER</code>, <code>BUSINESS</code>, <code>BUSINESS_CONTACT</code>, <code>CONTRACTOR</code></p></td>
+						<td>The affiliation type (or types) that should be pre-selected as the default choice</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>display-*</code></td>
+						<td>one or more key &rarr; value pairs<p>Keys: <code>EMAIL</code>, <code>FIRST_NAME</code>, <code>MIDDLE_NAME</code>, <code>LAST_NAME</code>, <code>FULL_NAME</code>, <code>COMPANY_NAME</code>, <code>BIRTH_DATE</code>, <code>ID_NUMBER</code>, <code>JOB_TITLE</code>, <code>USERNAME</code>, <code>ADDRESS1</code>, <code>ADDRESS2</code>, <code>CITY</code>, <code>STATE</code>, <code>POSTAL_CODE</code>, <code>PHONE_NUMBER</code>, <code>SSN</code>, <code>SSN_LAST4</code>, <code>STATUS_START_DATE</code>, <code>SUFFIX</code>, <code>RELATIONSHIP</code></p></td>
+						<td>Display options for fields</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>excludeOrganizationIds</code></td>
+						<td>string</td>
+						<td>Organizations that should be excluded from the organizations control</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>extraFields</code></td>
+						<td>Either a JSON array or a comma delimited list</td>
+						<td>Configuration for additional form fields that should be presented to collect extra information, which will be stored as request metadata</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>failureStepNotifierId</code></td>
+						<td>string</td>
+						<td>A Notifier ID that will be triggered upon landing on the failure page.</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>honorSystemOrganizationIds</code></td>
+						<td>One or more long values separated by a comma</td>
+						<td>A list of organizations for which the honor system verification source will be used. Helpful when wanting to
+ "white-list" an entire organization's affiliates through verification.</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>includeCountryCodes</code></td>
+						<td>One or more string values separated by a comma</td>
+						<td>The only countries that should be included in the country control</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>includeOrganizationIds</code></td>
+						<td>string</td>
+						<td>The only organizations that should be included in the organizations control</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>isAssetTypeRequired</code></td>
+						<td>boolean</td>
+						<td>Whether or not the user must select from a list of acceptable asset types on the document upload step</td>
+						<td><code>false</code></td>
+					</tr>
+			<tr>
+						<td><code>isLanguageIncluded</code></td>
+						<td>boolean</td>
+						<td>Allow users to include a language drop down</td>
+						<td><code>false</code></td>
+					</tr>
+			<tr>
+						<td><code>matchOrganization</code></td>
+						<td>boolean</td>
+						<td><code>false</code> to prevent the system from attempting to search based on the organization details supplied.
+ Used when the organization supplied should be used as-is rather than attempting to find a match against a canonical list.</td>
+						<td><code>true</code></td>
+					</tr>
+			<tr>
+						<td><code>maxRevisions</code></td>
+						<td>integer</td>
+						<td>The number of times a verification request can be revised and resubmitted before encountering an error</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>moduleComboboxVersion</code></td>
+						<td>string</td>
+						<td>The version of JSAPI combobox module to use</td>
+						<td><code>1.0</code></td>
+					</tr>
+			<tr>
+						<td><code>multipleFieldErrors</code></td>
+						<td>boolean</td>
+						<td><code>true</code> to display an error for each invalid field when validating the verification form. If <code>false</code>,
+ form validation will only display a single error message for the most severe validation issue.</td>
+						<td><code>false</code></td>
+					</tr>
+			<tr>
+						<td><code>optionalAssetFields</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>VALID_AS_OF</code>, <code>DATE</code>, <code>STATE</code></p></td>
+						<td>AssetFields for which a value may be provided when submitting verification form</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>optionalFields</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>EMAIL</code>, <code>FIRST_NAME</code>, <code>MIDDLE_NAME</code>, <code>LAST_NAME</code>, <code>FULL_NAME</code>, <code>COMPANY_NAME</code>, <code>BIRTH_DATE</code>, <code>ID_NUMBER</code>, <code>JOB_TITLE</code>, <code>USERNAME</code>, <code>ADDRESS1</code>, <code>ADDRESS2</code>, <code>CITY</code>, <code>STATE</code>, <code>POSTAL_CODE</code>, <code>PHONE_NUMBER</code>, <code>SSN</code>, <code>SSN_LAST4</code>, <code>STATUS_START_DATE</code>, <code>SUFFIX</code>, <code>RELATIONSHIP</code></p></td>
+						<td>Additional Fields for which a value may be provided when submitting verification form</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>optionalOrganizationParameters</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>id</code>, <code>name</code>, <code>emailDomains</code>, <code>ips</code>, <code>type</code>, <code>matchName</code>, <code>lenientNameMatch</code>, <code>street</code>, <code>street2</code>, <code>city</code>, <code>stateCode</code>, <code>zip</code>, <code>countryCode</code>, <code>phone</code>, <code>source</code>, <code>aliases</code>, <code>tags</code></p></td>
+						<td>OrganizationParameters for which a value may be provided when submitting verification form</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>org-display-*</code></td>
+						<td>one or more key &rarr; value pairs<p>Keys: <code>id</code>, <code>name</code>, <code>emailDomains</code>, <code>ips</code>, <code>type</code>, <code>matchName</code>, <code>lenientNameMatch</code>, <code>street</code>, <code>street2</code>, <code>city</code>, <code>stateCode</code>, <code>zip</code>, <code>countryCode</code>, <code>phone</code>, <code>source</code>, <code>aliases</code>, <code>tags</code></p></td>
+						<td>Display options for organization fields</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>organizationInputType</code></td>
+						<td>string</td>
+						<td>The type of input field to use when collecting organization information.
+ One of: <code>select</code>, <code>combobox</code> (default)</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>organizationRequired</code></td>
+						<td>A single OrganizationTypeRequiredEnum value. Should be specified as upper-case though lower-case is currently supported.</td>
+						<td>Whether organization is required, optional or excluded. Shorthand for managing required/optional organization fields - if set, it will take precedence over specific parameter lists.
+ Note: has potential to cause the verification request to fail validation and result in error. Values: FALSE, TRUE, EXCLUDE</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>organizationType</code></td>
+						<td>A single OrganizationType value. Should be specified as upper-case though lower-case is currently supported.<p>Values: <code>UNIVERSITY</code>, <code>MEMBERSHIP</code>, <code>MILITARY</code>, <code>FIRST_RESPONDER</code>, <code>MEDICAL</code>, <code>NON_PROFIT</code>, <code>CORPORATE</code>, <code>K12</code></p></td>
+						<td>A type filter for the Organization input component. Defining a value for this setting will enable the Organization combobox JSAPI module.</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>paymentAmount</code></td>
+						<td>double</td>
+						<td>Displays the payment amount for the service charge configuration.</td>
+						<td><code>1.0</code></td>
+					</tr>
+			<tr>
+						<td><code>ratePolicyMultiplier</code></td>
+						<td>integer</td>
+						<td>An optional multiplier used to increase rate limiting thresholds enforced on this template</td>
+						<td><code>1</code></td>
+					</tr>
+			<tr>
+						<td><code>reportRecipients</code></td>
+						<td>One or more string values separated by a comma</td>
+						<td>A list of email addresses that will receive a full-format report (with all response data) the week following the conclusion of the event (as identified by the mandatory template expiration date). <em>This capability must be explicitly enabled on a per-account basis.</em></td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>requiredAssetFields</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>VALID_AS_OF</code>, <code>DATE</code>, <code>STATE</code></p></td>
+						<td>AssetFields for which a value must be provided when submitting verification form</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>requiredFields</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>EMAIL</code>, <code>FIRST_NAME</code>, <code>MIDDLE_NAME</code>, <code>LAST_NAME</code>, <code>FULL_NAME</code>, <code>COMPANY_NAME</code>, <code>BIRTH_DATE</code>, <code>ID_NUMBER</code>, <code>JOB_TITLE</code>, <code>USERNAME</code>, <code>ADDRESS1</code>, <code>ADDRESS2</code>, <code>CITY</code>, <code>STATE</code>, <code>POSTAL_CODE</code>, <code>PHONE_NUMBER</code>, <code>SSN</code>, <code>SSN_LAST4</code>, <code>STATUS_START_DATE</code>, <code>SUFFIX</code>, <code>RELATIONSHIP</code></p></td>
+						<td>Additional Fields for which a value must be provided when submitting verification form</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>requiredOrganizationParameters</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>id</code>, <code>name</code>, <code>emailDomains</code>, <code>ips</code>, <code>type</code>, <code>matchName</code>, <code>lenientNameMatch</code>, <code>street</code>, <code>street2</code>, <code>city</code>, <code>stateCode</code>, <code>zip</code>, <code>countryCode</code>, <code>phone</code>, <code>source</code>, <code>aliases</code>, <code>tags</code></p></td>
+						<td>OrganizationParameters for which a value must be provided when submitting verification form</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>stepBanner</code></td>
+						<td>string</td>
+						<td>One of a list of pre-defined step banner names to customize the look and feel of the step banner above the form
+ Choose from classic (default), circle, simple-no-step, and simple-bar
+ Additional styling can be added for the step banner by adding css commands inside the view-step-banner-style config key</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>steps</code></td>
+						<td>One or more enum constants separated by a comma<p>Values: <code>COLLECT_TOKEN</code>, <code>VERIFY</code>, <code>REVIEW</code>, <code>REVIEW_UPLOAD</code>, <code>RESOLVE_ORGANIZATION</code>, <code>CHALLENGE_QUESTIONS</code>, <code>UPLOAD</code>, <code>PAYMENT</code>, <code>SUCCESS</code>, <code>SUCCESS_REDIRECT</code>, <code>UPLOAD_SUCCESS</code>, <code>UPDATE_METADATA</code>, <code>RESEND</code>, <code>ERROR</code>, <code>PREVIEW</code>, <code>IMAGE</code>, <code>CONTENT</code>, <code>FAILURE</code></p></td>
+						<td>Which steps will be included in the verification workflow</td>
+						<td><code>VERIFY,REVIEW,UPLOAD,SUCCESS</code></td>
+					</tr>
+			<tr>
+						<td><code>success_server_redirect</code></td>
+						<td>boolean</td>
+						<td><code>true</code> to send users to success URL with a server-side redirect, otherwise will
+ use a client-side redirect on an interstitial page (to set <code>Referer</code> header)</td>
+						<td><code>false</code></td>
+					</tr>
+			<tr>
+						<td><code>success_url</code></td>
+						<td>string</td>
+						<td>Where to send users upon successful eligibility verification</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>summaryRecipients</code></td>
+						<td>One or more string values separated by a comma</td>
+						<td>A list of email addresses that will receive a summary report (number of tickets per date and status) on a weekly basis (Monday mornings). <em>This capability must be explicitly enabled on a per-account basis.</em></td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>supportEmailAddress</code></td>
+						<td>string</td>
+						<td>Email address to which feedback/contact inquiries will be sent</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>theme</code></td>
+						<td>string</td>
+						<td>One of a list of pre-defined theme names to customize the look and feel of verification app.
+ Choose from (simple-form), (simple-form-branded), (ribbon), (blank-canvas), and (verify-v1).</td>
+						<td><code>verify-v1</code></td>
+					</tr>
+			<tr>
+						<td><code>tokenLifetime</code></td>
+						<td>long</td>
+						<td>How long (in milliseconds) auto-generated Verification tokens will last</td>
+						<td><code>86400000</code></td>
+					</tr>
+			<tr>
+						<td><code>tokenRequired</code></td>
+						<td>boolean</td>
+						<td><code>true</code> to require that Verification token be issued prior to referring traffic to the verification workflow.
+ <code>false</code> to generate a new Verification token if not supplied.</td>
+						<td><code>false</code></td>
+					</tr>
+			<tr>
+						<td><code>topWindowRedirect</code></td>
+						<td>boolean</td>
+						<td>On successful verification, should the redirect target the top frame</td>
+						<td><code>false</code></td>
+					</tr>
+			<tr>
+						<td><code>trackableQueryStringParameters</code></td>
+						<td>One or more string values separated by a comma</td>
+						<td>A list of query string parameters that will be captured with Metrics (page view) data</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td><code>version</code></td>
+						<td>integer</td>
+						<td></td>
+						<td><code>1</code></td>
+					</tr>
+			<tr>
+						<td><code>view-*</code></td>
+						<td>one or more key &rarr; value pairs</td>
+						<td>Velocity template partials used to customize views</td>
+						<td></td>
+					</tr>
+	</table>
+
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

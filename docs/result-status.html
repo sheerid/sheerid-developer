@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | REST API - Verification Result and Status</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a></li>
+						</ul>
+
+			<h1>REST API - Verification Result and Status</h1>
+<p>Descriptions of the result and status properties of <a href="/docs/model.html#VerificationResponse">VerificationResponse</a>.</p>
+
+<h3>Verification Result</h3>
+<p>Three-state indicator of the ultimate result of a verification request.  This is the primary verification response property that should be used by API consumers to answer the question, "is this person eligible?".</p>
+
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 15%">Result</th>
+	<th>Description</th>
+</tr>
+<tr id="status-true">
+	<td class="name"><code>true</td>
+	<td>The individual was uniquely located in at least one data source and confirmed to have at least one of the specified affiliations</td>
+</tr>
+<tr id="status-false">
+	<td class="name"><code>false</td>
+	<td>The individual was uniquely located in at least one data source but did not have any of the specified affiliations</td>
+</tr>
+<tr id="status-null">
+	<td class="name"><code>null</td>
+	<td>The individual was not uniquely located in at least one data source and therefore his or her affiliation status could not be conclusively determined</td>
+</tr>
+</table>
+
+<h3>Verification Status</h3>
+<p>Describes the status of a verification request as it progresses through its life-cycle.  API consumers should wait until the request has entered <code>COMPLETE</code> status before making decisions based on the verification response's result.</p>
+
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 15%">Status</th>
+	<th>Description</th>
+</tr>
+<tr id="status-NEW">
+	<td class="name"><code>NEW</td>
+	<td>The request has been prepared but has not yet been submitted to any verification source</td>
+</tr>
+<tr id="status-PENDING">
+	<td class="name"><code>PENDING</td>
+	<td>The request is pending action from one or more verification sources</td>
+</tr>
+<tr id="status-COMPLETE">
+	<td class="name"><code>COMPLETE</td>
+	<td>The request has been answered by at least one verification source</td>
+</tr>
+</table>
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | REST Resources</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a></li>
+						</ul>
+
+			<div class="page-header">
+	<h1>REST Resources</h1>
+	<h4>A complete listing of SheerID REST API endpoints</h4>
+</div>
+
+
+    <h3>Account</h3>
+    <ul>
+    			<li><a href="/docs/account/deleteAccount.html">Delete Account</a> - Delete an account.  All the subusers of the account will be deleted as well.</li>
+			<li><a href="/docs/account/getAccount.html">Get Account</a> - Retrieve an account object with fields accessible by the requestor.</li>
+			<li><a href="/docs/account/getDelegatedAccounts.html">Get Delegated Accounts</a> - Returns a list of accounts that delegate tasks of the provided type to the requesting account</li>
+			<li><a href="/docs/account/getLoggedInAccount.html">Get Logged In Account</a> - Get the authenticated account id for this session.</li>
+			<li><a href="/docs/account/getSecretToken.html">Get Secret Token</a> - Get the current Secret Token.</li>
+			<li><a href="/docs/account/listUsers.html">List Users</a> - List the users in an account.</li>
+			<li><a href="/docs/account/regenerateSecretToken.html">Regenerate Secret Token</a> - Delete the current Secret Token causing a new token to be issued.</li>
+	    </ul>
+    <h3>Affiliation Type</h3>
+    <ul>
+    			<li><a href="/docs/affiliationType/listAffiliationTypes.html">List Affiliation Types</a> - Obtain a list of affiliation types, optionally filtered by organization type.</li>
+	    </ul>
+    <h3>Asset</h3>
+    <ul>
+    			<li><a href="/docs/asset/countTasksByLocale.html">Count Tasks By Locale</a> - Get the counts of available tasks, grouped by Locale</li>
+			<li><a href="/docs/asset/countTasksByOrganizationType.html">Count Tasks By Organization Type</a> - Get the counts of available tasks, grouped by Organization Type</li>
+			<li><a href="/docs/asset/countTasksByPriority.html">Count Tasks By Priority</a> - Get the counts of available tasks, grouped by priority</li>
+			<li><a href="/docs/asset/getAssetData.html">Get Asset Data</a> - Retrieve an asset in its original format.</li>
+			<li><a href="/docs/asset/getAssetReviewCounts.html">Get Asset Review Counts</a> - Get the counts of currently-active asset reviews by category</li>
+			<li><a href="/docs/asset/getAssetStatements.html">Get Asset Statements</a> - Generate field-level assertions used to perform review of documents, based on the type of asset chosen.</li>
+			<li><a href="/docs/asset/issueToken.html">Issue Token</a> - Issue a token to facilitate an Asset upload via <a href="/docs/asset/upload.html">Upload</a>.</li>
+			<li><a href="/docs/asset/retrieveAsset.html">Retrieve Asset</a> - Retrieve an asset's metadata.</li>
+			<li><a href="/docs/asset/reviewAsset.html">Review Asset</a> - Review an Asset.</li>
+			<li><a href="/docs/asset/revokeToken.html">Revoke Token</a> - Revoke a token, making it immediately invalid.</li>
+			<li><a href="/docs/asset/upload.html">Upload</a> - Upload an asset.</li>
+	    </ul>
+    <h3>Asset Type</h3>
+    <ul>
+    			<li><a href="/docs/assetType/listAssetTypes.html">List Asset Types</a> - Obtain a list of asset types.</li>
+	    </ul>
+    <h3>Barcode</h3>
+    <ul>
+    			<li><a href="/docs/barcode/getBarcode.html">Get Barcode</a> - Obtain a barcode in image format</li>
+	    </ul>
+    <h3>Certification</h3>
+    <ul>
+    			<li><a href="/docs/certification/certify.html">Certify</a> - Perform a certification request</li>
+			<li><a href="/docs/certification/inquire.html">Inquire</a> - Retrieve the response for a requestId.</li>
+	    </ul>
+    <h3>Challenge</h3>
+    <ul>
+    			<li><a href="/docs/challenge/answerChallengeQuestions.html">Answer Challenge Questions</a> - Submit answers to a list of challenge questions</li>
+			<li><a href="/docs/challenge/getChallengeQuestions.html">Get Challenge Questions</a> - Obtain a list of challenge questions to answer in order to complete a verification.</li>
+	    </ul>
+    <h3>Coupon</h3>
+    <ul>
+    			<li><a href="/docs/coupon/getCoupon.html">Get Coupon</a> - Retrieve an existing coupon</li>
+			<li><a href="/docs/coupon/listCoupons.html">List Coupons</a> - List all of an account's current coupons</li>
+			<li><a href="/docs/coupon/redeemCoupon.html">Redeem Coupon</a> - Increment redemption count of a coupon</li>
+			<li><a href="/docs/coupon/restoreCoupon.html">Restore Coupon</a> - Decrement redemption count of a coupon</li>
+	    </ul>
+    <h3>Dataset</h3>
+    <ul>
+    			<li><a href="/docs/dataset/createDataset.html">Create Dataset</a> - Create a new dataset to use for verification</li>
+			<li><a href="/docs/dataset/createDatasetEntries.html">Create Dataset Entries</a> - Add entries to an existing dataset</li>
+			<li><a href="/docs/dataset/createDatasetEntries.html">Create Dataset Entries</a> - Create dataset entries with streaming approach</li>
+			<li><a href="/docs/dataset/createDatasetEntry.html">Create Dataset Entry</a> - Add a single dataset entry</li>
+			<li><a href="/docs/dataset/deleteDataset.html">Delete Dataset</a> - Delete a dataset</li>
+			<li><a href="/docs/dataset/findEntry.html">Find Entry</a> - Locate a dataset entry</li>
+			<li><a href="/docs/dataset/listDatasets.html">List Datasets</a> - List all datasets</li>
+			<li><a href="/docs/dataset/retrieveDataset.html">Retrieve Dataset</a> - Retrieve a single dataset by ID</li>
+	    </ul>
+    <h3>Field</h3>
+    <ul>
+    			<li><a href="/docs/field/listFields.html">List Fields</a> - Obtain a list of fields which can be supplied as inputs to <a href="/docs/verification/verify.html">Verify</a>.</li>
+	    </ul>
+    <h3>Namespace</h3>
+    <ul>
+    			<li><a href="/docs/namespace/listNamespaces.html">List Namespaces</a> - List an account's claimed namespaces, optionally filtered by template</li>
+			<li><a href="/docs/namespace/mapNamespace.html">Map Namespace</a> - Claim a namespace and map it to a template.</li>
+			<li><a href="/docs/namespace/releaseNamespace.html">Release Namespace</a> - Release a namespace and its template mapping.</li>
+			<li><a href="/docs/namespace/retrieveNamespace.html">Retrieve Namespace</a> - Get a specific namespace by name.</li>
+	    </ul>
+    <h3>Notifier</h3>
+    <ul>
+    			<li><a href="/docs/notifier/addNotifier.html">Add Notifier</a> - Add a notifier.</li>
+			<li><a href="/docs/notifier/fireNotifier.html">Fire Notifier</a> - Explicitly invoke a notifier.</li>
+			<li><a href="/docs/notifier/listNotifiers.html">List Notifiers</a> - List existing notifiers, optionally filtered by tag.</li>
+			<li><a href="/docs/notifier/removeNotifier.html">Remove Notifier</a> - Delete a notifier.</li>
+			<li><a href="/docs/notifier/retrieveNotifier.html">Retrieve Notifier</a> - Retrieve a notifier by its identifier.</li>
+			<li><a href="/docs/notifier/triggerVerificationEvent.html">Trigger Verification Event</a> - Trigger a verification request change event that will fire the applicable configured notifiers.</li>
+			<li><a href="/docs/notifier/updateNotifier.html">Update Notifier</a> - Update notifier</li>
+	    </ul>
+    <h3>O Auth Source</h3>
+    <ul>
+    			<li><a href="/docs/oAuthSource/oauthRequestSession.html">Oauth Request Session</a> - <strong>Obtain an OAuth2 token using code obtained from authorization request</strong></li>
+			<li><a href="/docs/oAuthSource/oauthVerify.html">Oauth Verify</a> - <strong>Obtain a dataset used to populate fields in a verifying application</strong></li>
+	    </ul>
+    <h3>Organization</h3>
+    <ul>
+    			<li><a href="/docs/organization/getOrganization.html">Get Organization</a> - Retrieves an organization by ID.</li>
+			<li><a href="/docs/organization/listOrganizations.html">List Organizations</a> - List organizations, optionally filtered by type.</li>
+			<li><a href="/docs/organization/typeahead.html">Typeahead</a> - Organization search for use in a type-ahead component</li>
+	    </ul>
+    <h3>Organization Type</h3>
+    <ul>
+    			<li><a href="/docs/organizationType/listOrganizationTypes.html">List Organization Types</a> - Obtain a list of organization types.</li>
+	    </ul>
+    <h3>Ping</h3>
+    <ul>
+    			<li><a href="/docs/ping/ping.html">Ping</a> - Check that the server is reachable and that service calls are being properly authenticated.</li>
+	    </ul>
+    <h3>Report</h3>
+    <ul>
+    			<li><a href="/docs/report/assetReviewMetrics.html">Asset Review Metrics</a> - Get a report of asset review metrics</li>
+			<li><a href="/docs/report/checkUserAccess.html">Check User Access</a> - checks user access for reporting</li>
+			<li><a href="/docs/report/deleteReport.html">Delete Report</a> - Delete a report.</li>
+			<li><a href="/docs/report/getReportData.html">Get Report Data</a> - Get the raw report data in the requested format.</li>
+			<li><a href="/docs/report/listReports.html">List Reports</a> - Obtain a list of existing reports.</li>
+			<li><a href="/docs/report/requestReport.html">Request Report</a> - Request a report.</li>
+			<li><a href="/docs/report/retrieveReport.html">Retrieve Report</a> - Check the status of a report by its identifier.</li>
+	    </ul>
+    <h3>Required Fields</h3>
+    <ul>
+    			<li><a href="/docs/requiredFields/listFields.html">List Fields</a> - Obtain a map of required fields for the specified VerificationTypes.</li>
+			<li><a href="/docs/requiredFields/listFieldsForTemplate.html">List Fields For Template</a> - Obtain a map of required fields for the specified Verification Template</li>
+	    </ul>
+    <h3>Reward</h3>
+    <ul>
+    			<li><a href="/docs/reward/createReward.html">Create Reward</a> - Create a reward to be distributed upon successful verification.</li>
+			<li><a href="/docs/reward/deleteReward.html">Delete Reward</a> - Delete a reward by its id.</li>
+			<li><a href="/docs/reward/listRewards.html">List Rewards</a> - Obtain a list of existing rewards.</li>
+			<li><a href="/docs/reward/retrieveReward.html">Retrieve Reward</a> - Retrieve a reward by its id.</li>
+			<li><a href="/docs/reward/updateReward.html">Update Reward</a> - Update a reward.</li>
+	    </ul>
+    <h3>Reward Pool</h3>
+    <ul>
+    			<li><a href="/docs/rewardPool/addCsvEntries.html">Add Csv Entries</a> - Add entries to a reward pool from a CSV file.</li>
+			<li><a href="/docs/rewardPool/addEntries.html">Add Entries</a> - Add one or more entries to a reward pool.</li>
+			<li><a href="/docs/rewardPool/createRewardPool.html">Create Reward Pool</a> - Create a reward pool.</li>
+			<li><a href="/docs/rewardPool/deleteRewardPool.html">Delete Reward Pool</a> - Delete a reward pool by its id.</li>
+			<li><a href="/docs/rewardPool/deleteRewardPoolEntries.html">Delete Reward Pool Entries</a> - Delete all the entries associated with a reward pool.</li>
+			<li><a href="/docs/rewardPool/getRewardPools.html">Get Reward Pools</a> - Obtain a list of reward pools.</li>
+			<li><a href="/docs/rewardPool/retrieveRewardPool.html">Retrieve Reward Pool</a> - Retrieve a reward pool by id.</li>
+			<li><a href="/docs/rewardPool/updateRewardPool.html">Update Reward Pool</a> - Update a reward pool.</li>
+	    </ul>
+    <h3>Template</h3>
+    <ul>
+    			<li><a href="/docs/template/activateTemplate.html">Activate Template</a> - Activates a disabled template.</li>
+			<li><a href="/docs/template/createTemplate.html">Create Template</a> - Create a verification request template.</li>
+			<li><a href="/docs/template/deleteTemplate.html">Delete Template</a> - Deletes a template.</li>
+			<li><a href="/docs/template/disableTemplate.html">Disable Template</a> - Disables a template.</li>
+			<li><a href="/docs/template/getTemplate.html">Get Template</a> - Retrieve an existing verification request template.</li>
+			<li><a href="/docs/template/getTemplateByName.html">Get Template By Name</a> - Retrieve an existing verification request template by its namespace.</li>
+			<li><a href="/docs/template/issueVerificationTokens.html">Issue Verification Tokens</a> - Issue one or more single-use tokens that can be used to perform a verification using a specific template.</li>
+			<li><a href="/docs/template/listTemplateUrls.html">List Template Urls</a> - Get URL(s) for accessing a verification template</li>
+			<li><a href="/docs/template/listTemplates.html">List Templates</a> - Retrieve a list of verification request templates for the account associated with the authenticated request.</li>
+			<li><a href="/docs/template/updateTemplate.html">Update Template</a> - Update an existing verification request template.</li>
+	    </ul>
+    <h3>Token</h3>
+    <ul>
+    			<li><a href="/docs/token/checkToken.html">Check Token</a> - Check that a given redemption token is valid</li>
+			<li><a href="/docs/token/checkVerificationToken.html">Check Verification Token</a> - Check that a given verification token is valid</li>
+			<li><a href="/docs/token/issueRedemptionToken.html">Issue Redemption Token</a> - Issue a single-use code to enable the redemption of an offer</li>
+			<li><a href="/docs/token/redeemToken.html">Redeem Token</a> - Check that a given redemption token is valid and revoke it</li>
+			<li><a href="/docs/token/revokeToken.html">Revoke Token</a> - Revoke a token, making it immediately invalid.</li>
+	    </ul>
+    <h3>User</h3>
+    <ul>
+    			<li><a href="/docs/user/addRole.html">Add Role</a> - Add a role to the specified user</li>
+			<li><a href="/docs/user/createUser.html">Create User</a> - Create a new subuser within an existing account.</li>
+			<li><a href="/docs/user/listUsers.html">List Users</a> - List users</li>
+			<li><a href="/docs/user/removeUser.html">Remove User</a> - Remove a user</li>
+			<li><a href="/docs/user/retrieveCurrentUser.html">Retrieve Current User</a> - Retrieve the current user</li>
+			<li><a href="/docs/user/retrieveUser.html">Retrieve User</a> - Retrieve a user by ID</li>
+			<li><a href="/docs/user/revokeRole.html">Revoke Role</a> - Remove a role from the specified user</li>
+			<li><a href="/docs/user/updateCurrentUser.html">Update Current User</a> - Update current user</li>
+	    </ul>
+    <h3>Verification</h3>
+    <ul>
+    			<li><a href="/docs/verification/getAuthorizedVerificationRequest.html">Get Authorized Verification Request</a> - [Beta] Get an existing authorizedVerificationRequest containing a verification request schema.</li>
+			<li><a href="/docs/verification/getAuthorizedVerificationRequest.html">Get Authorized Verification Request</a> - [Beta] Get an authorizedVerificationRequest containing a verification request schema.</li>
+			<li><a href="/docs/verification/getPerson.html">Get Person</a> - Return available person data entered during a request if it has not already been purged in accordance with customer</li>
+			<li><a href="/docs/verification/inquire.html">Inquire</a> - Check the status of a historical verification.</li>
+			<li><a href="/docs/verification/listAssets.html">List Assets</a> - Obtain a list of the digital assets that accompany a particular verification request.</li>
+			<li><a href="/docs/verification/prepareVerificationRequest.html">Prepare Verification Request</a> - Prepare a verification request.</li>
+			<li><a href="/docs/verification/search.html">Search</a> - Obtain a list of requests that match either name or email details.</li>
+			<li><a href="/docs/verification/submitVerificationRequest.html">Submit Verification Request</a> - Submit a prepared verification request.</li>
+			<li><a href="/docs/verification/updateVerification.html">Update Verification</a> - Update and re-submit an existing verification request.</li>
+			<li><a href="/docs/verification/updateVerificationRequestMetadata.html">Update Verification Request Metadata</a> - Update meta-data pertaining to a verification request.</li>
+			<li><a href="/docs/verification/verify.html">Verify</a> - <strong>Perform a verification.</strong> This is the primary method of importance for most integrations.</li>
+			<li><a href="/docs/verification/verifyAuthorizedVerificationRequest.html">Verify Authorized Verification Request</a> - [Beta] Verify a authorizedVerificationRequest.</li>
+	    </ul>
+    <h3>Verification Type</h3>
+    <ul>
+    			<li><a href="/docs/verificationType/listVerificationTypes.html">List Verification Types</a> - Obtain a list of verification types.</li>
+	    </ul>
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

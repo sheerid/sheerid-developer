@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Retrieve User</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a> <span class="divider">/</span></li>
+									<li><a href="/docs">REST Resources</a></li>
+										</ul>
+
+			<h1>Retrieve User</h1>
+<p>Retrieve a user by ID</p>
+
+
+<h2>Request Details</h2>
+
+<h3>HTTP Method(s)</h3>
+<p>
+  <code>GET</code>
+</p>
+
+<h3>Resource URI</h3>
+<p class="env">
+	<code id="sandboxUri" class="sandbox block">https://services-sandbox.sheerid.com/rest/0.5/user/{userId}</code>
+	<code id="productionUri" class="production block" style="display: none">https://services.sheerid.com/rest/0.5/user/{userId}</code>
+</p>
+<p class="btn-group env-toggle">
+	<button class="btn btn-mini active sandbox">Sandbox</button>
+	<button class="btn btn-mini production">Production</button>
+</p>
+
+
+<h3>Path Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr>userId</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		the user id of the user to return.
+					</td>
+</tr>
+</table>
+
+
+<h2>Response Details</h2>
+
+<h3>Expected Response</h3>
+<p>
+  A single <a href="/docs/model.html#User">User</a> object
+</p>
+
+
+<h3>Errors (HTTP Status Codes)</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">HTTP Status Code</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><code>404</td>
+	<td>user does not exist</td>
+</tr>
+</table>
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

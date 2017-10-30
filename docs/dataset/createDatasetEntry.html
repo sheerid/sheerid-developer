@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Create Dataset Entry</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a> <span class="divider">/</span></li>
+									<li><a href="/docs">REST Resources</a></li>
+										</ul>
+
+			<h1>Create Dataset Entry</h1>
+<p>Add a single dataset entry</p>
+
+
+<h2>Request Details</h2>
+
+<h3>HTTP Method(s)</h3>
+<p>
+  <code>POST</code>
+</p>
+
+<h3>Resource URI</h3>
+<p class="env">
+	<code id="sandboxUri" class="sandbox block">https://services-sandbox.sheerid.com/rest/0.5/dataset/{datasetId}/entry</code>
+	<code id="productionUri" class="production block" style="display: none">https://services.sheerid.com/rest/0.5/dataset/{datasetId}/entry</code>
+</p>
+<p class="btn-group env-toggle">
+	<button class="btn btn-mini active sandbox">Sandbox</button>
+	<button class="btn btn-mini production">Production</button>
+</p>
+
+<h3>Accepted Content Type(s)</h3>
+<p>
+  <code>application/x-www-form-urlencoded</code>
+</p>
+
+<h3>Path Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr>datasetId</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		the identifier of an existing dataset to which entries should be added
+					</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr><em>metadata key (any string prefixed with <code>:</code>)</em></nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		metadata value for the supplied key (ex: <code>:orderId=179365</code>)
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>BIRTH_DATE</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Complete birth date of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>EMAIL</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		An email address, preferably the one issued by the organization being verified
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>FIRST_NAME</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Given name of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>LAST_NAME</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Surname/family name of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>STATUS_START_DATE</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		The date on which the affiliation being verified began. For VETERAN, this is the date of discharge/end of active duty status.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>affiliationType</nobr></td>
+	<td><nobr>AffiliationType</nobr></td>
+	<td>
+		the affiliation type of this entry, required if not set globally for this dataset
+							<br/>
+			Possible values:
+							<code>ACTIVE_DUTY</code>,							<code>ALUMNUS</code>,							<code>BUSINESS</code>,							<code>BUSINESS_CONTACT</code>,							<code>CIVILIAN_EMPLOYEE</code>,							<code>CONTRACTOR</code>,							<code>CUSTOMER</code>,							<code>DISABLED_VETERAN</code>,							<code>EMPLOYEE</code>,							<code>EMT</code>,							<code>FACULTY</code>,							<code>FIREFIGHTER</code>,							<code>GRADUATE</code>,							<code>MEMBER</code>,							<code>MILITARY_FAMILY</code>,							<code>MILITARY_RETIREE</code>,							<code>NON_PROFIT</code>,							<code>NURSE</code>,							<code>OWNER</code>,							<code>POLICE</code>,							<code>RESELLER</code>,							<code>RESERVIST</code>,							<code>STUDENT_COLLEGE_BOUND</code>,							<code>STUDENT_FULL_TIME</code>,							<code>STUDENT_PART_TIME</code>,							<code>VETERAN</code>						</td>
+</tr>
+<tr>
+	<td class="name"><nobr>expirationDate</nobr></td>
+	<td><nobr>date</nobr></td>
+	<td>
+		a date upon which this entry is no longer valid
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>organizationId</nobr></td>
+	<td><nobr>long</nobr></td>
+	<td>
+		the organizationId to which this entry pertains, required if not set globally for this dataset
+					</td>
+</tr>
+</table>
+
+<h2>Response Details</h2>
+
+<h3>Expected Response</h3>
+<p>
+  A single <a href="/docs/model.html#DatasetEntry">DatasetEntry</a> object
+</p>
+
+<h3>Response Content Type(s)</h3>
+<p>
+  <code>application/json</code>
+</p>
+
+<h3>Errors (HTTP Status Codes)</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">HTTP Status Code</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>all dataset fields are not present in the request</td>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>there is no organization associated with the dataset and <code>organizationId</code> is missing or invalid</td>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>there is no affiliation type associated with the dataset and <code>affiliationType</code> is missing or invalid</td>
+</tr>
+</table>
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

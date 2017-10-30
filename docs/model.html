@@ -1,0 +1,2819 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | REST API Model</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a></li>
+						</ul>
+
+			<h1>REST API Model</h1>
+<p>Definitions of objects used in the SheerID REST API</p>
+
+<h2 id="Account">Account</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">accountId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">company</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">firstName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">lastName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Affiliation">Affiliation</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">attributes</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">end</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organizationId</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organizationName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">sourcePersonId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">start</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				AffiliationType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"STUDENT_COLLEGE_BOUND"</code>
+							<code>"STUDENT_FULL_TIME"</code>
+							<code>"STUDENT_PART_TIME"</code>
+							<code>"GRADUATE"</code>
+							<code>"ALUMNUS"</code>
+							<code>"FACULTY"</code>
+							<code>"EMPLOYEE"</code>
+							<code>"RESELLER"</code>
+							<code>"NON_PROFIT"</code>
+							<code>"ACTIVE_DUTY"</code>
+							<code>"VETERAN"</code>
+							<code>"RESERVIST"</code>
+							<code>"MILITARY_FAMILY"</code>
+							<code>"MILITARY_RETIREE"</code>
+							<code>"DISABLED_VETERAN"</code>
+							<code>"CIVILIAN_EMPLOYEE"</code>
+							<code>"FIREFIGHTER"</code>
+							<code>"POLICE"</code>
+							<code>"EMT"</code>
+							<code>"NURSE"</code>
+							<code>"MEMBER"</code>
+							<code>"CUSTOMER"</code>
+							<code>"OWNER"</code>
+							<code>"BUSINESS"</code>
+							<code>"BUSINESS_CONTACT"</code>
+							<code>"CONTRACTOR"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">updated</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="AmbiguousOrganizationVerificationError">AmbiguousOrganizationVerificationError</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">code</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">message</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organizations</td>
+	<td style="width: 20%">
+				<a href="#Organization">Organization</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">propertyName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Asset">Asset</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">assetType</td>
+	<td style="width: 20%">
+				AssetType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"ID_CARD"</code>
+							<code>"DATED_ID_CARD"</code>
+							<code>"OFFICIAL_LETTER"</code>
+							<code>"OTHER"</code>
+							<code>"PAY_STUB"</code>
+							<code>"ACCEPTANCE_LETTER"</code>
+							<code>"CLASS_SCHEDULE"</code>
+							<code>"TRANSCRIPT"</code>
+							<code>"TUITION_RECEIPT"</code>
+							<code>"REGISTRATION_RECEIPT"</code>
+							<code>"INSURANCE_CARD"</code>
+							<code>"DD214"</code>
+							<code>"IRS_SCHEDULE_G_FORM_1120"</code>
+							<code>"IRS_SCHEDULE_K1_FORM_1120S"</code>
+							<code>"IRS_SCHEDULE_K1_FORM_1065"</code>
+							<code>"IRS_SCHEDULE_C_OR_CEZ_PAGE_1"</code>
+							<code>"IRS_SCHEDULE_B1_FORM_1065"</code>
+							<code>"REPORT_CARD"</code>
+							<code>"DBA_REGISTRATION"</code>
+							<code>"BUSINESS_TAX_FORM_PAGE1"</code>
+							<code>"ARTICLES_OF_INCORPORATION"</code>
+							<code>"SECRETARY_OF_STATE_FILING"</code>
+							<code>"VENDOR_STATEMENT"</code>
+							<code>"LEASE_AGREEMENT"</code>
+							<code>"LETTER_OF_AUTHORIZATION"</code>
+							<code>"POWER_OF_ATTORNEY"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">assetTypeDescription</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">comments</td>
+	<td style="width: 20%">
+				<a href="#Comment">Comment</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">created</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">errors</td>
+	<td style="width: 20%">
+				<a href="#Error">Error</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">expires</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">issued</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">purged</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>true</code>
+							<code>false</code>
+							<code>null</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">reviewer</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">size</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">status</td>
+	<td style="width: 20%">
+				AssetStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"ACCEPTED"</code>
+							<code>"PENDING_REVIEW"</code>
+							<code>"REJECTED"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="AuthorizedVerificationRequest">AuthorizedVerificationRequest</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">expires</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">fields</td>
+	<td style="width: 20%">
+				<a href="#Field">Field</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="BulkCertificationTask">BulkCertificationTask</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">bulkAllBatchRecordsProcessed</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>true</code>
+							<code>false</code>
+							<code>null</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">bulkBatchId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">bulkBatchRecordCount</td>
+	<td style="width: 20%">
+				integer			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">bulkBatchRecordsProcessed</td>
+	<td style="width: 20%">
+				integer			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">bulkErrors</td>
+	<td style="width: 20%">
+				Map[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">bulkTaskStatus</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">created</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="CertificationPropertyError">CertificationPropertyError</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">code</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">message</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">propertyName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="CertificationRequest">CertificationRequest</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">attribute</td>
+	<td style="width: 20%">
+				Attribute			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">config</td>
+	<td style="width: 20%">
+				<a href="#CertificationRequestConfig">CertificationRequestConfig</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">timestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="CertificationRequestConfig">CertificationRequestConfig</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">consolationRewardIds</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">rewardIds</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="CertificationResponse">CertificationResponse</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">errors</td>
+	<td style="width: 20%">
+				<a href="#Error">Error</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">request</td>
+	<td style="width: 20%">
+				<a href="#CertificationRequest">CertificationRequest</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">requestId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">result</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>true</code>
+							<code>false</code>
+							<code>null</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">status</td>
+	<td style="width: 20%">
+				VerificationStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"NEW"</code>
+							<code>"OPEN"</code>
+							<code>"PENDING"</code>
+							<code>"COMPLETE"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">timestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ChallengeQuestion">ChallengeQuestion</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">choices</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">questionText</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ChallengeQuestionSet">ChallengeQuestionSet</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">questions</td>
+	<td style="width: 20%">
+				<a href="#ChallengeQuestion">ChallengeQuestion</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Comment">Comment</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">created</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">text</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">userId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ConfigurationEntry">ConfigurationEntry</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">key</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">value</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Coupon">Coupon</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">state</td>
+	<td style="width: 20%">
+				TokenState			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"ACTIVE"</code>
+							<code>"EXPIRED"</code>
+							<code>"USED"</code>
+						</td>
+</tr>
+</table><h2 id="Dataset">Dataset</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">affiliationType</td>
+	<td style="width: 20%">
+				AffiliationType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"STUDENT_COLLEGE_BOUND"</code>
+							<code>"STUDENT_FULL_TIME"</code>
+							<code>"STUDENT_PART_TIME"</code>
+							<code>"GRADUATE"</code>
+							<code>"ALUMNUS"</code>
+							<code>"FACULTY"</code>
+							<code>"EMPLOYEE"</code>
+							<code>"RESELLER"</code>
+							<code>"NON_PROFIT"</code>
+							<code>"ACTIVE_DUTY"</code>
+							<code>"VETERAN"</code>
+							<code>"RESERVIST"</code>
+							<code>"MILITARY_FAMILY"</code>
+							<code>"MILITARY_RETIREE"</code>
+							<code>"DISABLED_VETERAN"</code>
+							<code>"CIVILIAN_EMPLOYEE"</code>
+							<code>"FIREFIGHTER"</code>
+							<code>"POLICE"</code>
+							<code>"EMT"</code>
+							<code>"NURSE"</code>
+							<code>"MEMBER"</code>
+							<code>"CUSTOMER"</code>
+							<code>"OWNER"</code>
+							<code>"BUSINESS"</code>
+							<code>"BUSINESS_CONTACT"</code>
+							<code>"CONTRACTOR"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">fields</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">orgParameters</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organization</td>
+	<td style="width: 20%">
+				<a href="#Organization">Organization</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">updated</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="DatasetEntry">DatasetEntry</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">affiliationType</td>
+	<td style="width: 20%">
+				AffiliationType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"STUDENT_COLLEGE_BOUND"</code>
+							<code>"STUDENT_FULL_TIME"</code>
+							<code>"STUDENT_PART_TIME"</code>
+							<code>"GRADUATE"</code>
+							<code>"ALUMNUS"</code>
+							<code>"FACULTY"</code>
+							<code>"EMPLOYEE"</code>
+							<code>"RESELLER"</code>
+							<code>"NON_PROFIT"</code>
+							<code>"ACTIVE_DUTY"</code>
+							<code>"VETERAN"</code>
+							<code>"RESERVIST"</code>
+							<code>"MILITARY_FAMILY"</code>
+							<code>"MILITARY_RETIREE"</code>
+							<code>"DISABLED_VETERAN"</code>
+							<code>"CIVILIAN_EMPLOYEE"</code>
+							<code>"FIREFIGHTER"</code>
+							<code>"POLICE"</code>
+							<code>"EMT"</code>
+							<code>"NURSE"</code>
+							<code>"MEMBER"</code>
+							<code>"CUSTOMER"</code>
+							<code>"OWNER"</code>
+							<code>"BUSINESS"</code>
+							<code>"BUSINESS_CONTACT"</code>
+							<code>"CONTRACTOR"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">expirationDate</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organizationId</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="DatasetWithStats">DatasetWithStats</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">affiliationType</td>
+	<td style="width: 20%">
+				AffiliationType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"STUDENT_COLLEGE_BOUND"</code>
+							<code>"STUDENT_FULL_TIME"</code>
+							<code>"STUDENT_PART_TIME"</code>
+							<code>"GRADUATE"</code>
+							<code>"ALUMNUS"</code>
+							<code>"FACULTY"</code>
+							<code>"EMPLOYEE"</code>
+							<code>"RESELLER"</code>
+							<code>"NON_PROFIT"</code>
+							<code>"ACTIVE_DUTY"</code>
+							<code>"VETERAN"</code>
+							<code>"RESERVIST"</code>
+							<code>"MILITARY_FAMILY"</code>
+							<code>"MILITARY_RETIREE"</code>
+							<code>"DISABLED_VETERAN"</code>
+							<code>"CIVILIAN_EMPLOYEE"</code>
+							<code>"FIREFIGHTER"</code>
+							<code>"POLICE"</code>
+							<code>"EMT"</code>
+							<code>"NURSE"</code>
+							<code>"MEMBER"</code>
+							<code>"CUSTOMER"</code>
+							<code>"OWNER"</code>
+							<code>"BUSINESS"</code>
+							<code>"BUSINESS_CONTACT"</code>
+							<code>"CONTRACTOR"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">entryCount</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">fields</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">orgParameters</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organization</td>
+	<td style="width: 20%">
+				<a href="#Organization">Organization</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">updated</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Error">Error</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">code</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">message</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">propertyName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ExpiringToken">ExpiringToken</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">expires</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">token</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Field">Field</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">required</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="FieldConfig">FieldConfig</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">defaultValue</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">editable</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">multiple</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">pattern</td>
+	<td style="width: 20%">
+				Pattern			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">required</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">value</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">values</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="FieldNumberRange">FieldNumberRange</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">required</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">values</td>
+	<td style="width: 20%">
+				<a href="#Range">Range</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="FieldText">FieldText</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">pattern</td>
+	<td style="width: 20%">
+				Pattern			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">required</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="FieldType">FieldType</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">required</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="FieldValidator">FieldValidator</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">required</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Namespace">Namespace</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">templateId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Notification">Notification</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">eventType</td>
+	<td style="width: 20%">
+				EventType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"CREATE"</code>
+							<code>"SYNCHRONOUS_UPDATE"</code>
+							<code>"ASYNCHRONOUS_UPDATE"</code>
+							<code>"DEACTIVATE"</code>
+							<code>"DATA_EXPIRATION"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">notifierId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">notifierType</td>
+	<td style="width: 20%">
+				NotifierType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"EMAIL"</code>
+							<code>"HTTP"</code>
+							<code>"SYSTEM_OUT"</code>
+							<code>"NEXTERNAL"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">requestId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">responseId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">success</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">timestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationResponseResultCode</td>
+	<td style="width: 20%">
+				VerificationResponseResultCode			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"DISAPPROVED"</code>
+							<code>"APPROVED"</code>
+							<code>"VERIFICATION_SOURCE_UNAVAILABLE"</code>
+							<code>"INSUFFICIENT_DATA"</code>
+							<code>"EXPIRED"</code>
+							<code>"REVOKED"</code>
+							<code>"NOT_APPROVED"</code>
+							<code>"INCONCLUSIVE"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationStatus</td>
+	<td style="width: 20%">
+				VerificationStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"NEW"</code>
+							<code>"OPEN"</code>
+							<code>"PENDING"</code>
+							<code>"COMPLETE"</code>
+						</td>
+</tr>
+</table><h2 id="NotificationEmail">NotificationEmail</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">address</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">eventType</td>
+	<td style="width: 20%">
+				EventType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"CREATE"</code>
+							<code>"SYNCHRONOUS_UPDATE"</code>
+							<code>"ASYNCHRONOUS_UPDATE"</code>
+							<code>"DEACTIVATE"</code>
+							<code>"DATA_EXPIRATION"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">notifierId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">notifierType</td>
+	<td style="width: 20%">
+				NotifierType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"EMAIL"</code>
+							<code>"HTTP"</code>
+							<code>"SYSTEM_OUT"</code>
+							<code>"NEXTERNAL"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">requestId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">responseId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">subject</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">success</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">timestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationResponseResultCode</td>
+	<td style="width: 20%">
+				VerificationResponseResultCode			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"DISAPPROVED"</code>
+							<code>"APPROVED"</code>
+							<code>"VERIFICATION_SOURCE_UNAVAILABLE"</code>
+							<code>"INSUFFICIENT_DATA"</code>
+							<code>"EXPIRED"</code>
+							<code>"REVOKED"</code>
+							<code>"NOT_APPROVED"</code>
+							<code>"INCONCLUSIVE"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationStatus</td>
+	<td style="width: 20%">
+				VerificationStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"NEW"</code>
+							<code>"OPEN"</code>
+							<code>"PENDING"</code>
+							<code>"COMPLETE"</code>
+						</td>
+</tr>
+</table><h2 id="NotificationHttp">NotificationHttp</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">eventType</td>
+	<td style="width: 20%">
+				EventType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"CREATE"</code>
+							<code>"SYNCHRONOUS_UPDATE"</code>
+							<code>"ASYNCHRONOUS_UPDATE"</code>
+							<code>"DEACTIVATE"</code>
+							<code>"DATA_EXPIRATION"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">notifierId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">notifierType</td>
+	<td style="width: 20%">
+				NotifierType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"EMAIL"</code>
+							<code>"HTTP"</code>
+							<code>"SYSTEM_OUT"</code>
+							<code>"NEXTERNAL"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">requestId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">responseId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">statusCode</td>
+	<td style="width: 20%">
+				integer			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">success</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">timestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">url</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationResponseResultCode</td>
+	<td style="width: 20%">
+				VerificationResponseResultCode			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"DISAPPROVED"</code>
+							<code>"APPROVED"</code>
+							<code>"VERIFICATION_SOURCE_UNAVAILABLE"</code>
+							<code>"INSUFFICIENT_DATA"</code>
+							<code>"EXPIRED"</code>
+							<code>"REVOKED"</code>
+							<code>"NOT_APPROVED"</code>
+							<code>"INCONCLUSIVE"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationStatus</td>
+	<td style="width: 20%">
+				VerificationStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"NEW"</code>
+							<code>"OPEN"</code>
+							<code>"PENDING"</code>
+							<code>"COMPLETE"</code>
+						</td>
+</tr>
+</table><h2 id="Notifier">Notifier</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">config</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">filters</td>
+	<td style="width: 20%">
+				<a href="#NotifierFilter">NotifierFilter</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">tags</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="NotifierFilter">NotifierFilter</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">eventType</td>
+	<td style="width: 20%">
+				EventType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"CREATE"</code>
+							<code>"SYNCHRONOUS_UPDATE"</code>
+							<code>"ASYNCHRONOUS_UPDATE"</code>
+							<code>"DEACTIVATE"</code>
+							<code>"DATA_EXPIRATION"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">result</td>
+	<td style="width: 20%">
+				VerificationResult			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"TRUE"</code>
+							<code>"FALSE"</code>
+							<code>"UNKNOWN"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">status</td>
+	<td style="width: 20%">
+				VerificationStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"NEW"</code>
+							<code>"OPEN"</code>
+							<code>"PENDING"</code>
+							<code>"COMPLETE"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">templateId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">tier</td>
+	<td style="width: 20%">
+				integer			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationType</td>
+	<td style="width: 20%">
+				VerificationType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"HONOR_SYSTEM"</code>
+							<code>"VALIDATION"</code>
+							<code>"IP_ADDRESS"</code>
+							<code>"EMAIL_LOOP"</code>
+							<code>"AUTHORITATIVE"</code>
+							<code>"SSO"</code>
+							<code>"ASSET_REVIEW"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationTypeOfRecord</td>
+	<td style="width: 20%">
+				VerificationType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"HONOR_SYSTEM"</code>
+							<code>"VALIDATION"</code>
+							<code>"IP_ADDRESS"</code>
+							<code>"EMAIL_LOOP"</code>
+							<code>"AUTHORITATIVE"</code>
+							<code>"SSO"</code>
+							<code>"ASSET_REVIEW"</code>
+						</td>
+</tr>
+</table><h2 id="Organization">Organization</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">accountId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">active</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">aliases</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">city</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">country</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">emailDomains</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">ips</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">state</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">street</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">tags</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				OrganizationType			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"UNIVERSITY"</code>
+							<code>"MEMBERSHIP"</code>
+							<code>"MILITARY"</code>
+							<code>"FIRST_RESPONDER"</code>
+							<code>"MEDICAL"</code>
+							<code>"NON_PROFIT"</code>
+							<code>"CORPORATE"</code>
+							<code>"K12"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">zip</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Person">Person</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">fields</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Range">Range</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">max</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">min</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ReferenceToken">ReferenceToken</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">expires</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">reference</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">token</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Report">Report</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">requestTimestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">status</td>
+	<td style="width: 20%">
+				ReportStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"CREATED"</code>
+							<code>"REPORTING"</code>
+							<code>"COMPLETE"</code>
+							<code>"ERROR"</code>
+						</td>
+</tr>
+</table><h2 id="ReportBreakdown">ReportBreakdown</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">accountId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">count</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">date</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">error</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organizationType</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">result</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationType</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ResultWrapper">ResultWrapper</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">result</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Reward">Reward</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">data</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="RewardPool">RewardPool</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">warnThreshold</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="RewardPoolEntryResult">RewardPoolEntryResult</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">entriesAdded</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="RewardPoolWithStats">RewardPoolWithStats</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">remainingEntries</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">totalEntries</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">warnThreshold</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="SearchResult">SearchResult</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">results</td>
+	<td style="width: 20%">
+				mixed[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">totalCount</td>
+	<td style="width: 20%">
+				int			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Statement">Statement</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">fieldType</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">label</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">operator</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">value</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ThinOrganization">ThinOrganization</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="ThinOrganizationWithLocation">ThinOrganizationWithLocation</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">city</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				long			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">state</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">zip</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="Token">Token</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">token</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="URLReference">URLReference</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">url</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="User">User</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">accountId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">email</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">firstName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">friendlyName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">lastName</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">roles</td>
+	<td style="width: 20%">
+				UserRole[]			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"ACCOUNT_OWNER"</code>
+							<code>"CONFIGURATION_ADMIN"</code>
+							<code>"DEVELOPER"</code>
+							<code>"MICROCENTER_ADMIN"</code>
+							<code>"PRODUCTION_USER"</code>
+							<code>"PUPPET_MASTER"</code>
+							<code>"PUPPET"</code>
+							<code>"PURGER"</code>
+							<code>"REPORTER"</code>
+							<code>"RESOURCE_MANAGER"</code>
+							<code>"REST_USER"</code>
+							<code>"REVIEWER"</code>
+							<code>"REVIEWER_ADMIN"</code>
+							<code>"REVIEWER_MANAGER"</code>
+							<code>"REVIEW_REPORTER"</code>
+							<code>"REWARD_ADMIN"</code>
+							<code>"STAFF_REVIEW_REPORTER"</code>
+							<code>"STAFF"</code>
+							<code>"TEMPLATE_ADMIN"</code>
+							<code>"USER"</code>
+							<code>"USER_ADMIN"</code>
+							<code>"BULK_VERIFIER"</code>
+							<code>"PERSON_DATA"</code>
+							<code>"MSHUP"</code>
+							<code>"ORGANIZATION_MANAGER"</code>
+							<code>"PROMOTION_MANAGER"</code>
+							<code>"CUSTOMER_SERVICE"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">username</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="VerificationRequest">VerificationRequest</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">active</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>true</code>
+							<code>false</code>
+							<code>null</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">assetMap</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">config</td>
+	<td style="width: 20%">
+				<a href="#VerificationRequestConfig">VerificationRequestConfig</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">expirationDate</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">organization</td>
+	<td style="width: 20%">
+				<a href="#Organization">Organization</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">personId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">revisions</td>
+	<td style="width: 20%">
+				integer			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">timestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">userId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="VerificationRequestConfig">VerificationRequestConfig</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">affiliationTypes</td>
+	<td style="width: 20%">
+				AffiliationType[]			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"STUDENT_COLLEGE_BOUND"</code>
+							<code>"STUDENT_FULL_TIME"</code>
+							<code>"STUDENT_PART_TIME"</code>
+							<code>"GRADUATE"</code>
+							<code>"ALUMNUS"</code>
+							<code>"FACULTY"</code>
+							<code>"EMPLOYEE"</code>
+							<code>"RESELLER"</code>
+							<code>"NON_PROFIT"</code>
+							<code>"ACTIVE_DUTY"</code>
+							<code>"VETERAN"</code>
+							<code>"RESERVIST"</code>
+							<code>"MILITARY_FAMILY"</code>
+							<code>"MILITARY_RETIREE"</code>
+							<code>"DISABLED_VETERAN"</code>
+							<code>"CIVILIAN_EMPLOYEE"</code>
+							<code>"FIREFIGHTER"</code>
+							<code>"POLICE"</code>
+							<code>"EMT"</code>
+							<code>"NURSE"</code>
+							<code>"MEMBER"</code>
+							<code>"CUSTOMER"</code>
+							<code>"OWNER"</code>
+							<code>"BUSINESS"</code>
+							<code>"BUSINESS_CONTACT"</code>
+							<code>"CONTRACTOR"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">assetTypes</td>
+	<td style="width: 20%">
+				AssetType[]			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"ID_CARD"</code>
+							<code>"DATED_ID_CARD"</code>
+							<code>"OFFICIAL_LETTER"</code>
+							<code>"OTHER"</code>
+							<code>"PAY_STUB"</code>
+							<code>"ACCEPTANCE_LETTER"</code>
+							<code>"CLASS_SCHEDULE"</code>
+							<code>"TRANSCRIPT"</code>
+							<code>"TUITION_RECEIPT"</code>
+							<code>"REGISTRATION_RECEIPT"</code>
+							<code>"INSURANCE_CARD"</code>
+							<code>"DD214"</code>
+							<code>"IRS_SCHEDULE_G_FORM_1120"</code>
+							<code>"IRS_SCHEDULE_K1_FORM_1120S"</code>
+							<code>"IRS_SCHEDULE_K1_FORM_1065"</code>
+							<code>"IRS_SCHEDULE_C_OR_CEZ_PAGE_1"</code>
+							<code>"IRS_SCHEDULE_B1_FORM_1065"</code>
+							<code>"REPORT_CARD"</code>
+							<code>"DBA_REGISTRATION"</code>
+							<code>"BUSINESS_TAX_FORM_PAGE1"</code>
+							<code>"ARTICLES_OF_INCORPORATION"</code>
+							<code>"SECRETARY_OF_STATE_FILING"</code>
+							<code>"VENDOR_STATEMENT"</code>
+							<code>"LEASE_AGREEMENT"</code>
+							<code>"LETTER_OF_AUTHORIZATION"</code>
+							<code>"POWER_OF_ATTORNEY"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">consolationRewardIds</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">locale</td>
+	<td style="width: 20%">
+				Locale			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					Shim to return VerificationModel logic name in metadata when overridden so that it does not get reverted on template update
+			<br/>
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">notifierIds</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">rewardIds</td>
+	<td style="width: 20%">
+				string[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">verificationTypes</td>
+	<td style="width: 20%">
+				VerificationType[]			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"HONOR_SYSTEM"</code>
+							<code>"VALIDATION"</code>
+							<code>"IP_ADDRESS"</code>
+							<code>"EMAIL_LOOP"</code>
+							<code>"AUTHORITATIVE"</code>
+							<code>"SSO"</code>
+							<code>"ASSET_REVIEW"</code>
+						</td>
+</tr>
+</table><h2 id="VerificationRequestTemplate">VerificationRequestTemplate</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">active</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">begins</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">config</td>
+	<td style="width: 20%">
+				<a href="#VerificationRequestConfig">VerificationRequestConfig</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">created</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">expires</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">id</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">name</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="VerificationResponse">VerificationResponse</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">affiliations</td>
+	<td style="width: 20%">
+				<a href="#Affiliation">Affiliation</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">errors</td>
+	<td style="width: 20%">
+				<a href="#Error">Error</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">inactiveAffiliations</td>
+	<td style="width: 20%">
+				<a href="#Affiliation">Affiliation</a>[]			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">metadata</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">request</td>
+	<td style="width: 20%">
+				<a href="#VerificationRequest">VerificationRequest</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">requestId</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">result</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>true</code>
+							<code>false</code>
+							<code>null</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">status</td>
+	<td style="width: 20%">
+				VerificationStatus			</td>
+	<td style="width: 60%">
+							<span class="label">Values:</span>
+							<code>"NEW"</code>
+							<code>"OPEN"</code>
+							<code>"PENDING"</code>
+							<code>"COMPLETE"</code>
+						</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">timestamp</td>
+	<td style="width: 20%">
+				Unix timestamp (ms)			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="VerificationUserResponse">VerificationUserResponse</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="VerificationUserResponseData">VerificationUserResponseData</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">data</td>
+	<td style="width: 20%">
+		 Map of 		string					&rarr; string pairs
+			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="VerificationUserResponseResult">VerificationUserResponseResult</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">data</td>
+	<td style="width: 20%">
+				boolean			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table><h2 id="VerificationUserResponseUploadToken">VerificationUserResponseUploadToken</h2>
+<p></p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">data</td>
+	<td style="width: 20%">
+				<a href="#Token">Token</a>			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+<tr>
+	<td class="name" style="width: 20%">type</td>
+	<td style="width: 20%">
+				string			</td>
+	<td style="width: 60%">
+					</td>
+</tr>
+</table>
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

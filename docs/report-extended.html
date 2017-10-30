@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Report Data Descriptions - Extended Report Format</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a></li>
+						</ul>
+
+			<h1>Report Data Descriptions - Extended Report Format</h1>
+
+<p>The following information is included in the extended verification reports available to privileged users through the API and reporting UI.</p>
+
+<table class="table table-striped table-bordered sheerid-green">
+	<tr>
+			<th>Field Name</th>
+			<th>Description</th>
+		</tr>
+			<tr>
+						<td>Request ID</td>
+						<td>A unique identifier for the request</td>
+					</tr>
+			<tr>
+						<td>Request Timestamp</td>
+						<td>The date and time of the original request or its most recent revision</td>
+					</tr>
+			<tr>
+						<td>Account ID</td>
+						<td>An identifier for the account that submitted the request</td>
+					</tr>
+			<tr>
+						<td>Person Id</td>
+						<td>A unique string which represents an individual's identifying data, can be used to recognize duplicate submissions with the same data</td>
+					</tr>
+			<tr>
+						<td>User ID</td>
+						<td>An identifier for the user that submitted the request</td>
+					</tr>
+			<tr>
+						<td>Username</td>
+						<td>The username of the user that submitted the request</td>
+					</tr>
+			<tr>
+						<td>Result</td>
+						<td><ul>
+ 	<li><code>true</code> if the individual has been matched in at least one Verification Source and currently has at least one of the requested affiliation types</li>
+  <li><code>false</code> if the individual has been matched in at least one Verification Source and does not currently have at least one of the requested affiliation types</li>
+  <li><code>[empty]</code> if the individual has not been matched in any Verification Source</li>
+ </ul></td>
+					</tr>
+			<tr>
+						<td>Status</td>
+						<td><ul>
+ 	<li><code>NEW</code> if the request has not been submitted to any Verification Source</li>
+ 	<li><code>PENDING</code> if the request is still awaiting a final response from one or more Verification Source</li>
+ 	<li><code>OPEN</code> if the request has been submitted to one or more Verification Sources but the individual has not been matched</li>
+ 	<li><code>COMPLETE</code> if the request has been submitted to one or more Verification Sources and the individual has been matched in at least one</li>
+ </ul></td>
+					</tr>
+			<tr>
+						<td>Errors</td>
+						<td>A list of errors encountered during the verification process for this request</td>
+					</tr>
+			<tr>
+						<td>OrganizationEntity ID</td>
+						<td>The identifier for the requested organization</td>
+					</tr>
+			<tr>
+						<td>Organization Name</td>
+						<td>The name of the requested organization</td>
+					</tr>
+			<tr>
+						<td>Organization State</td>
+						<td>The State (location) of the requested organization</td>
+					</tr>
+			<tr>
+						<td>Organization Country</td>
+						<td>The Country (location) of the requested organization</td>
+					</tr>
+			<tr>
+						<td>OrganizationEntity Type</td>
+						<td>The type of organization represented by the request</td>
+					</tr>
+			<tr>
+						<td>Verification Types</td>
+						<td>The type(s) of verification used to obtain a verification result</td>
+					</tr>
+			<tr>
+						<td>Requested Affiliation Types</td>
+						<td>The types of affiliations that the request was attempting to verify</td>
+					</tr>
+			<tr>
+						<td>Confirmed Affiliation Types</td>
+						<td>The types of affiliations that the individual was determined to have</td>
+					</tr>
+			<tr>
+						<td>Data Updated Date</td>
+						<td>The date the affiliation information was most recently updated by the data source</td>
+					</tr>
+			<tr>
+						<td>Period Begin Date</td>
+						<td>The start of the most recent affiliation status period</td>
+					</tr>
+			<tr>
+						<td>Period End Date</td>
+						<td>The end of the most recent affiliation status period</td>
+					</tr>
+			<tr>
+						<td><em>various</em></td>
+						<td>Zero or more fields which represent the information of the individual being verified. The presence and number of fields will vary depending on the requested report and the target account's data retention policies.</td>
+					</tr>
+			<tr>
+						<td><em>various</em></td>
+						<td>Zero or more fields which represent additional information collected with the verification request. The presence and number of fields will vary depending on the requested report and the target account's configuration.</td>
+					</tr>
+			<tr>
+						<td>Response Data</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td>Error Codes</td>
+						<td></td>
+					</tr>
+			<tr>
+						<td>Verified?</td>
+						<td><code>true</code> if the individual had a current affiliation which matched one of the requested types, <code>false</code> otherwise</td>
+					</tr>
+			<tr>
+						<td>Response Time</td>
+						<td>The time elapsed between the original or modified request and the slowest response from a verification source</td>
+					</tr>
+			<tr>
+						<td>Response Count</td>
+						<td>The number of times a verification source was consulted for this request</td>
+					</tr>
+			<tr>
+						<td>Duplicate</td>
+						<td><code>true</code> if this request was determined to be a duplicate submission of a previous request, and as such will not result in a verification fee, <code>false</code> otherwise</td>
+					</tr>
+			<tr>
+						<td>Sheer Id Test</td>
+						<td><code>true</code> if this request was determined to be a test submitted by a sheerid employee, and as such will not result in a verification fee, <code>false</code> otherwise</td>
+					</tr>
+			<tr>
+						<td>Revisions</td>
+						<td>The number of times this verification request was modified with updated information and resubmitted</td>
+					</tr>
+			<tr>
+						<td>Series RequestID</td>
+						<td>The identifier of the first verification request in a grouped series of verification requests per our duplicate matching logic</td>
+					</tr>
+			<tr>
+						<td>Series Index</td>
+						<td>The index of this request within the duplicate verification request series (<code>0</code> represents the original request in the series)</td>
+					</tr>
+			<tr>
+						<td>Request Time Offset</td>
+						<td>The time (in milliseconds) between this request and the original request in the series</td>
+					</tr>
+			<tr>
+						<td>Document Reviews</td>
+						<td>The number of document reviews that were performed for this request</td>
+					</tr>
+			<tr>
+						<td>Verification Sources Of Record</td>
+						<td>A list of verification sources that were able to locate the individual and conclusively answer the verification request</td>
+					</tr>
+			<tr>
+						<td>Verification Types Of Record</td>
+						<td>A list of verification types that were able to locate the individual and conclusively answer the verification request</td>
+					</tr>
+			<tr>
+						<td>All Verification Sources Consulted</td>
+						<td>A complete list of verification sources that were consulted to obtain a result for this verification request, regardless of result</td>
+					</tr>
+			<tr>
+						<td>Affiliation Attributes</td>
+						<td>A list of extended attributes that further qualify the confirmed affiliations</td>
+					</tr>
+			<tr>
+						<td>Cache Usage</td>
+						<td>The type of caching used to satisfy this request</td>
+					</tr>
+			<tr>
+						<td>Cached Index</td>
+						<td>The number of cached verifications that have preceded this one based on the same original response</td>
+					</tr>
+			<tr>
+						<td>Debits</td>
+						<td>A comma-delimited list of charges associated with this activity, if applicable</td>
+					</tr>
+			<tr>
+						<td>Credits</td>
+						<td>A comma-delimited list of credits associated with this activity, if applicable</td>
+					</tr>
+			<tr>
+						<td>Campaign Name</td>
+						<td>The name of the verification campaign (template) used for this verification request</td>
+					</tr>
+			<tr>
+						<td>Bulk Batch Id</td>
+						<td>Identifier for the bulk batch (if this request was processed via bulk verification)</td>
+					</tr>
+			<tr>
+						<td>Additional Data Services</td>
+						<td>List of additional named data services that were used in processing this request</td>
+					</tr>
+	</table>
+
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

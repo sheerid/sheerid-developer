@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Verify</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a> <span class="divider">/</span></li>
+									<li><a href="/docs">REST Resources</a></li>
+										</ul>
+
+			<h1>Verify</h1>
+<p><strong>Perform a verification.</strong> This is the primary method of importance for most integrations.
+ Fields to supply vary based on the affiliations the caller is interested in verifying and the type of verification being performed.  For a list of which fields are relevant for a particular type of request, see the <a href="/docs/fields.html">verification field requirements documentation</a>.</p>
+
+
+<h2>Request Details</h2>
+
+<h3>HTTP Method(s)</h3>
+<p>
+  <code>POST</code>
+</p>
+
+<h3>Resource URI</h3>
+<p class="env">
+	<code id="sandboxUri" class="sandbox block">https://services-sandbox.sheerid.com/rest/0.5/verification</code>
+	<code id="productionUri" class="production block" style="display: none">https://services.sheerid.com/rest/0.5/verification</code>
+</p>
+<p class="btn-group env-toggle">
+	<button class="btn btn-mini active sandbox">Sandbox</button>
+	<button class="btn btn-mini production">Production</button>
+</p>
+
+<h3>Accepted Content Type(s)</h3>
+<p>
+  <code>application/x-www-form-urlencoded</code>
+</p>
+
+
+<h3>Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr><em>metadata key (any string prefixed with <code>:</code>)</em></nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		metadata value for the supplied key (ex: <code>:orderId=179365</code>)
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>BIRTH_DATE</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Complete birth date of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>EMAIL</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		An email address, preferably the one issued by the organization being verified
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>FIRST_NAME</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Given name of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>LAST_NAME</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		Surname/family name of the verification subject
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>STATUS_START_DATE</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		The date on which the affiliation being verified began. For VETERAN, this is the date of discharge/end of active duty status.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>_affiliationTypes</nobr></td>
+	<td><nobr>AffiliationType[]</nobr>[]</td>
+	<td>
+		A comma-delimited list of affiliation type names (see <a href="/docs/affiliationType/listAffiliationTypes.html">List Affiliation Types</a>). Defines the affiliations the requestor deems acceptable for a given verification. (For example, when attempting to verify that an individual is either a full-time or part-time student: <code>_affiliationTypes=STUDENT_FULL_TIME,STUDENT_PART_TIME</code>
+							<br/>
+			Possible values:
+							<code>ACTIVE_DUTY</code>,							<code>ALUMNUS</code>,							<code>BUSINESS</code>,							<code>BUSINESS_CONTACT</code>,							<code>CIVILIAN_EMPLOYEE</code>,							<code>CONTRACTOR</code>,							<code>CUSTOMER</code>,							<code>DISABLED_VETERAN</code>,							<code>EMPLOYEE</code>,							<code>EMT</code>,							<code>FACULTY</code>,							<code>FIREFIGHTER</code>,							<code>GRADUATE</code>,							<code>MEMBER</code>,							<code>MILITARY_FAMILY</code>,							<code>MILITARY_RETIREE</code>,							<code>NON_PROFIT</code>,							<code>NURSE</code>,							<code>OWNER</code>,							<code>POLICE</code>,							<code>RESELLER</code>,							<code>RESERVIST</code>,							<code>STUDENT_COLLEGE_BOUND</code>,							<code>STUDENT_FULL_TIME</code>,							<code>STUDENT_PART_TIME</code>,							<code>VETERAN</code>						</td>
+</tr>
+<tr>
+	<td class="name"><nobr>_assetTypes</nobr></td>
+	<td><nobr>AssetType[]</nobr>[]</td>
+	<td>
+		A comma-delimited list of asset type names (see <a href="/docs/assetType/listAssetTypes.html">List Asset Types</a>). Defines the requestor's list of acceptable documents for use with <code>ASSET_REVIEW</code> verification types.  If <code>ASSET_REVIEW</code> is not an allowable verification type, this configuration is ignored.
+							<br/>
+			Possible values:
+							<code>ACCEPTANCE_LETTER</code>,							<code>ARTICLES_OF_INCORPORATION</code>,							<code>BUSINESS_TAX_FORM_PAGE1</code>,							<code>CLASS_SCHEDULE</code>,							<code>DATED_ID_CARD</code>,							<code>DBA_REGISTRATION</code>,							<code>DD214</code>,							<code>ID_CARD</code>,							<code>INSURANCE_CARD</code>,							<code>IRS_SCHEDULE_B1_FORM_1065</code>,							<code>IRS_SCHEDULE_C_OR_CEZ_PAGE_1</code>,							<code>IRS_SCHEDULE_G_FORM_1120</code>,							<code>IRS_SCHEDULE_K1_FORM_1065</code>,							<code>IRS_SCHEDULE_K1_FORM_1120S</code>,							<code>LEASE_AGREEMENT</code>,							<code>LETTER_OF_AUTHORIZATION</code>,							<code>OFFICIAL_LETTER</code>,							<code>OTHER</code>,							<code>PAY_STUB</code>,							<code>POWER_OF_ATTORNEY</code>,							<code>REGISTRATION_RECEIPT</code>,							<code>REPORT_CARD</code>,							<code>SECRETARY_OF_STATE_FILING</code>,							<code>TRANSCRIPT</code>,							<code>TUITION_RECEIPT</code>,							<code>VENDOR_STATEMENT</code>						</td>
+</tr>
+<tr>
+	<td class="name"><nobr>_rewardIds</nobr></td>
+	<td><nobr>string[]</nobr>[]</td>
+	<td>
+		A comma-delimited list of Reward IDs (see <a href="/docs/reward/listRewards.html">List Rewards</a>). Defines any rewards to be issued when an individual is verified.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>_verificationTypes</nobr></td>
+	<td><nobr>VerificationType[]</nobr>[]</td>
+	<td>
+		A comma-delimited list of verification type names (see <a href="/docs/verificationType/listVerificationTypes.html">List Verification Types</a>). Defines the requestor's list of acceptable techniques that may be used to verify an individual.
+							<br/>
+			Possible values:
+							<code>ASSET_REVIEW</code>,							<code>AUTHORITATIVE</code>,							<code>EMAIL_LOOP</code>,							<code>HONOR_SYSTEM</code>,							<code>IP_ADDRESS</code>,							<code>SSO</code>,							<code>VALIDATION</code>						</td>
+</tr>
+<tr>
+	<td class="name"><nobr>endUserId</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		a custom identifier for tracking a unique end-user as recognized by a client system
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>endUserIp</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		the end-user's IP address, may be supplied in situations where the API is invoked by an intermediate server
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>matchName</nobr></td>
+	<td><nobr>boolean</nobr></td>
+	<td>
+		<code>false</code> to disable matching of organizationName. If <code>organizationId</code> is supplied or <code>organizationName</code> is not supplied, this parameter is ignored.
+					(default value: <code>true</code>)
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>organizationId</nobr></td>
+	<td><nobr>long</nobr></td>
+	<td>
+		an optional organization id, see <a href="/docs/organization/listOrganizations.html">List Organizations</a>
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>organizationName</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		an organization name supplied when the ID is not known. If <code>organizationId</code> is supplied, this parameter is ignored.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>organizationType</nobr></td>
+	<td><nobr>OrganizationType</nobr></td>
+	<td>
+		an organization type (see <a href="/docs/organizationType/listOrganizationTypes.html">List Organization Types</a>) to help when matching the organization name.  If <code>organizationId</code> is supplied or <code>organizationName</code> is not supplied, this parameter is ignored.
+							<br/>
+			Possible values:
+							<code>CORPORATE</code>,							<code>FIRST_RESPONDER</code>,							<code>K12</code>,							<code>MEDICAL</code>,							<code>MEMBERSHIP</code>,							<code>MILITARY</code>,							<code>NON_PROFIT</code>,							<code>UNIVERSITY</code>						</td>
+</tr>
+<tr>
+	<td class="name"><nobr>templateId</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		the identifier of an existing template (see <a href="/docs/template/createTemplate.html">Create Template</a>) from which to source verification request configuration. If this value is supplied, any other request configuration directives (parameters prefixed with <code>_</code>) are ignored.
+					</td>
+</tr>
+</table>
+<h3>Rate Limit(s)</h3>
+<p>Please review the <a href="/rate-limits.html">Rate Limiting Documentation</a> for more information about rate limits and related HTTP response headers.</p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">Scope</th>
+	<th>Limit</th>
+	<th>Time Window (Rolling)</th>
+</tr>
+<tr>
+  <td>account</td>
+  <td>50</td>
+  <td>		    15 minutes
+</td>
+</tr>
+</table>
+
+<h2>Response Details</h2>
+
+<h3>Expected Response</h3>
+<p>
+  A single <a href="/docs/model.html#VerificationResponse">VerificationResponse</a> object
+</p>
+
+<h3>Response Content Type(s)</h3>
+<p>
+  <code>application/json</code>
+</p>
+
+<h3>Errors (HTTP Status Codes)</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">HTTP Status Code</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>data provided is not valid, reasons include:
+                                          <ul>
+                                          <li>Date is not properly formatted</li>
+                                          <li>Birth date supplied indicates the individual attempting to verify is under 13 years old</li>
+                                          <li>Email address supplied is not a valid format</li>
+                                          <li>Phone number supplied is not a valid format</li>
+                                          </ul></td>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>attempt to verify using <code>organizationName</code> (instead of <code>organizationId</code>) but there is more than one organization matching that name. Can be prevented by setting <code>matchName</code> to <code>false</code> when supplying <code>organizationName</code></td>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>No data source of allowed verification type(s) exists to verify the specified organization or affiliation</td>
+</tr>
+<tr>
+	<td class="name"><code>429</td>
+	<td>rate limit policy has been exceeded</td>
+</tr>
+</table>
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

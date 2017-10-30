@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Upload</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a> <span class="divider">/</span></li>
+									<li><a href="/docs">REST Resources</a></li>
+										</ul>
+
+			<h1>Upload</h1>
+<p>Upload an asset.</p>
+
+
+<h2>Request Details</h2>
+
+<h3>HTTP Method(s)</h3>
+<p>
+  <code>POST</code>
+</p>
+
+<h3>Resource URI</h3>
+<p class="env">
+	<code id="sandboxUri" class="sandbox block">https://services-sandbox.sheerid.com/rest/0.5/asset</code>
+	<code id="productionUri" class="production block" style="display: none">https://services.sheerid.com/rest/0.5/asset</code>
+</p>
+<p class="btn-group env-toggle">
+	<button class="btn btn-mini active sandbox">Sandbox</button>
+	<button class="btn btn-mini production">Production</button>
+</p>
+
+<h3>Accepted Content Type(s)</h3>
+<p>
+  <code>multipart/form-data</code>
+</p>
+
+
+<h3>Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr>assetType</nobr></td>
+	<td><nobr>AssetType</nobr></td>
+	<td>
+		the type of document the user is uploading
+							<br/>
+			Possible values:
+							<code>ACCEPTANCE_LETTER</code>,							<code>ARTICLES_OF_INCORPORATION</code>,							<code>BUSINESS_TAX_FORM_PAGE1</code>,							<code>CLASS_SCHEDULE</code>,							<code>DATED_ID_CARD</code>,							<code>DBA_REGISTRATION</code>,							<code>DD214</code>,							<code>ID_CARD</code>,							<code>INSURANCE_CARD</code>,							<code>IRS_SCHEDULE_B1_FORM_1065</code>,							<code>IRS_SCHEDULE_C_OR_CEZ_PAGE_1</code>,							<code>IRS_SCHEDULE_G_FORM_1120</code>,							<code>IRS_SCHEDULE_K1_FORM_1065</code>,							<code>IRS_SCHEDULE_K1_FORM_1120S</code>,							<code>LEASE_AGREEMENT</code>,							<code>LETTER_OF_AUTHORIZATION</code>,							<code>OFFICIAL_LETTER</code>,							<code>OTHER</code>,							<code>PAY_STUB</code>,							<code>POWER_OF_ATTORNEY</code>,							<code>REGISTRATION_RECEIPT</code>,							<code>REPORT_CARD</code>,							<code>SECRETARY_OF_STATE_FILING</code>,							<code>TRANSCRIPT</code>,							<code>TUITION_RECEIPT</code>,							<code>VENDOR_STATEMENT</code>						</td>
+</tr>
+<tr>
+	<td class="name"><nobr>assetTypeDescription</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		free form text to provide additional details of assetType
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>failure</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		A URL to which the request will be redirected upon a failed upload.  If omitted, will not redirect upon failure.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>file</nobr></td>
+	<td><nobr>file</nobr></td>
+	<td>
+		one or more files, with parameter keys prefixed by <code>file</code> (Ex: <code>file0</code>, <code>file1</code>...). File type must be one of our <a href="/docs/asset-mime-types.html">supported MIME types</a>.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>mergeMultipleDocuments</nobr></td>
+	<td><nobr>boolean</nobr></td>
+	<td>
+		to merge multiple documents into one when possible
+					(default value: <code>true</code>)
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>success</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		A URL to which the request will be redirected upon a successful upload.  If omitted, will not redirect upon success.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>token</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		a valid asset token obtained from <a href="/docs/asset/issueToken.html">Issue Token</a>
+					</td>
+</tr>
+</table>
+
+<h2>Response Details</h2>
+
+<h3>Expected Response</h3>
+<p>
+  A list of <a href="/docs/model.html#Asset">Asset</a> objects
+</p>
+
+<h3>Response Content Type(s)</h3>
+<p>
+  <code>application/json</code>
+</p>
+
+<h3>Errors (HTTP Status Codes)</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">HTTP Status Code</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><code>400</td>
+	<td>either no files have been supplied or at least one file is larger than the maximum upload size</td>
+</tr>
+<tr>
+	<td class="name"><code>401</td>
+	<td>the asset token supplied is invalid, expired or has already been used to perform an upload</td>
+</tr>
+<tr>
+	<td class="name"><code>403</td>
+	<td>if the request state does not allow upload</td>
+</tr>
+<tr>
+	<td class="name"><code>415</td>
+	<td>at least one file is an unsupported MIME type</td>
+</tr>
+</table>
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>

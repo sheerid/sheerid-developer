@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Request Report</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+							<li><a href="/">Home</a> <span class="divider">/</span></li>
+									<li><a href="/docs">REST Resources</a></li>
+										</ul>
+
+			<h1>Request Report</h1>
+<p>Request a report.
+
+ When the report has a <code>COMPLETE</code> status (as returned by <a href="/docs/report/retrieveReport.html">Retrieve Report</a>), you can obtain the report data using <a href="/docs/report/getReportData.html">Get Report Data</a>.</p>
+
+
+<h2>Request Details</h2>
+
+<h3>HTTP Method(s)</h3>
+<p>
+  <code>POST</code>
+</p>
+
+<h3>Resource URI</h3>
+<p class="env">
+	<code id="sandboxUri" class="sandbox block">https://services-sandbox.sheerid.com/rest/0.5/report</code>
+	<code id="productionUri" class="production block" style="display: none">https://services.sheerid.com/rest/0.5/report</code>
+</p>
+<p class="btn-group env-toggle">
+	<button class="btn btn-mini active sandbox">Sandbox</button>
+	<button class="btn btn-mini production">Production</button>
+</p>
+
+
+
+<h3>Parameters</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><nobr>bulkBatchId</nobr></td>
+	<td><nobr>string</nobr>[]</td>
+	<td>
+		
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>delta</nobr></td>
+	<td><nobr>long</nobr></td>
+	<td>
+		a number of milliseconds into the past (from the time the report is requested) the report should cover. If <code>startDate</code> is supplied, this value is ignored.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>endDate</nobr></td>
+	<td><nobr>date</nobr></td>
+	<td>
+		an optional upper bound on request timestamp
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>errorsToFilter</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		a comma-delimited list of error codes to filter out of the report
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>fields</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		include specific named person data fields in report (as a comma-delimited list of field constants from <a href="/docs/field/listFields.html">List Fields</a>, or <code>*</code> to return all available data). Supplied fields are narrowed to match the data access policies for the calling user.
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>invoiceMode</nobr></td>
+	<td><nobr>boolean</nobr></td>
+	<td>
+		filter results to just verification requests for which a fee is incurred
+					(default value: <code>false</code>)
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>metaKeys</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		a comma-delimited list of request/respsonse metadata keys to include in report
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>notifyEmail</nobr></td>
+	<td><nobr>boolean</nobr></td>
+	<td>
+		<code>false</code> to disable email notification upon completion of report
+					(default value: <code>true</code>)
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>reportingConfigurationIncluded</nobr></td>
+	<td><nobr>boolean</nobr></td>
+	<td>
+		to include metaKeys specified in the account configuration
+					(default value: <code>false</code>)
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>startDate</nobr></td>
+	<td><nobr>date</nobr></td>
+	<td>
+		an optional lower bound on request timestamp
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>statuses</nobr></td>
+	<td><nobr>string</nobr></td>
+	<td>
+		a comma-delimited list of verification statuses to include
+					</td>
+</tr>
+<tr>
+	<td class="name"><nobr>templateId</nobr></td>
+	<td><nobr>string</nobr>[]</td>
+	<td>
+		a ID of a template by which to filter requests. If none are specified, will not filter by template. If multiple template IDs are specified, will use OR combination to filter requests.
+					</td>
+</tr>
+</table>
+<h3>Rate Limit(s)</h3>
+<p>Please review the <a href="/rate-limits.html">Rate Limiting Documentation</a> for more information about rate limits and related HTTP response headers.</p>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">Scope</th>
+	<th>Limit</th>
+	<th>Time Window (Rolling)</th>
+</tr>
+<tr>
+  <td>account</td>
+  <td>12</td>
+  <td>		    60 minutes
+</td>
+</tr>
+</table>
+
+<h2>Response Details</h2>
+
+<h3>Expected Response</h3>
+<p>
+  A single <a href="/docs/model.html#Report">Report</a> object
+</p>
+
+<h3>Response Content Type(s)</h3>
+<p>
+  <code>application/json</code>
+</p>
+
+<h3>Errors (HTTP Status Codes)</h3>
+<table class="table table-striped table-condensed table-bordered sheerid-green">
+<tr>
+	<th style="width: 20%">HTTP Status Code</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td class="name"><code>429</td>
+	<td>rate limit policy has been exceeded</td>
+</tr>
+</table>
+
+
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/docs.js"></script>
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-25697054-3', 'sheerid.com');
+	ga('send', 'pageview');
+	</script>
+</body>
+</html>
