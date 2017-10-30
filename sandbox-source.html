@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SheerID Developer Center | Sandbox Verification Source</title>
+    <link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+    <link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+                <div>
+                    <div class="pull-right">
+                        <a href="/" class="title">SheerID Developer Center</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content" style="margin-bottom:100px;">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+            </ul>
+        
+            <!-- begin content -->
+            <h1>Sandbox Verification Source</h1>
+            <p>In order to facilitate integration testing with the SheerID REST API, we have developed the Sandbox Verification Source.  This allows developers to make API requests which behave just like production requests without incurring traffic against our verification databases.</p>
+        
+            <h2>Usage</h2>
+            <p>The Sandbox Verification Source is used when verification requests are issued to the hostname <code>services-sandbox.sheerid.com</code>. An example URL is shown below:</p>
+        
+            <code class="block">
+            https://services-sandbox.sheerid.com/rest/0.5/verification
+            </code>
+        
+            <h2>Request Details</h2>
+            <p>The Sandbox Verification Source is able to simulate a number of different verification scenarios.  Most verifications require at a minimum the following 3 fields to be supplied in a request to the <a href="/docs/verification/verify.html">verify</a> method. For more information about these fields, refer to the <a href="/docs/fields.html">listFields</a> method documentation.</p>
+        
+            <ul style="list-style: square;">
+                <li><code>FIRST_NAME</code></li>
+                <li><code>LAST_NAME</code></li>
+                <li><code>BIRTH_DATE</code></li>
+            </ul>
+            <p>Some verifications require different or additional information such as postal code, identification number, or a discharge date.</p>
+
+            <h1>Controlling the Verification Results</h1>
+
+            <h2>Testing Instructions for AUTHORITATIVE</h2>
+
+            <p>Additionally, the results of the response from the Sandbox Verification Source can be controlled by passing a specific value for certain fields such as <code>BIRTH_DATE</code>.  Refer to the tables below for lists of possible outcomes.</p>
+
+            <p>Here is the hierarchical order of fields in which we attempt to verify first</p>
+            <ol>
+                <li><code>BIRTH_DATE</code></li>
+                <li><code>SSN_LAST4</code></li>
+                <li><code>ID_NUMBER</code></li>
+                <li><code>POSTAL_CODE</code></li>
+            </ol>
+
+            <p>Most verifications can be controlled using the date of birth since it is the first field in the order above.</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Field</th>
+                    <th>Value Supplied</th>
+                    <th>Verification Result</th>
+                    <th>Summary</th>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></td>
+                    <td><nobr>An odd birth year (ex: <code>1991-04-26</code>)</nobr></td>
+                    <td><code>false</code></td>
+                    <td>The individual was identified, but not currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></td>
+                    <td><nobr>An even birth year (ex: <code>1992-04-26</code>)</nobr></td>
+                    <td><code>true</code></td>
+                    <td>The individual was identified and currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></td>
+                    <td><nobr>Any future date (ex: <code>2099-04-26</code>)</nobr></td>
+                    <td><code>null</code></td>
+                    <td>The individual was unable to be identified.</td>
+                </tr>
+            </table>
+
+            <p>When verifying faculty and teachers for university or K12, you can use the postal code.</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Field</th>
+                    <th>Value Supplied</th>
+                    <th>Verification Result</th>
+                    <th>Summary</th>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>An odd postal code (ex: <code>97401</code>)</nobr></td>
+                    <td><code>false</code></td>
+                    <td>The individual was identified, but not currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>An even postal code (ex: <code>97402</code>)</nobr></td>
+                    <td><code>true</code></td>
+                    <td>The individual was identified and currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>A postal code of 0 (ex: <code>0</code>)</nobr></td>
+                    <td><code>null</code></td>
+                    <td>The individual was unable to be identified.</td>
+                </tr>
+            </table>
+
+            <p>When verifying a retired military service member, you can use the discharge date.  We define a military retiree as an individual who has served a minimum of 20 years and has been discharged.  To simulate this in the sandbox we assume the user joined the service on their 18th birthday and served 20 years or more.</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Fields</th>
+                    <th>Value Supplied</th>
+                    <th>Verification Result</th>
+                    <th>Summary</th>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></br><code>STATUS_START_DATE</code></td>
+                    <td><nobr>A discharge date before the user's 38th birthday</br>(ex: <code>BIRTH_DATE: 1974-04-26</code> and <code>STATUS_START_DATE: 2005-04-26</code>)</nobr></td>
+                    <td><code>false</code></td>
+                    <td>The individual was identified, but not currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></br><code>STATUS_START_DATE</code></td>
+                    <td><nobr>A discharge date after the user's 38th birthday </br>(ex: <code>BIRTH_DATE: 1974-04-26</code> and <code>STATUS_START_DATE: 2013-04-26</code>)</nobr></td>
+                    <td><code>true</code></td>
+                    <td>The individual was identified and currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>STATUS_START_DATE</code></td>
+                    <td><nobr>Any future discharge date (ex: <code>2099-4-26</code>)</nobr></td>
+                    <td><code>null</code></td>
+                    <td>The individual was unable to be identified.</td>
+                </tr>
+            </table>
+
+            <p>When verifying non-profit, you can use the non-profit organization's identification number.</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Field</th>
+                    <th>Value Supplied</th>
+                    <th>Verification Result</th>
+                    <th>Summary</th>
+                </tr>
+                <tr>
+                    <td class="name"><code>ID_NUMBER</code></td>
+                    <td><nobr>An odd id number (ex: <code>12345</code>)</nobr></td>
+                    <td><code>false</code></td>
+                    <td>The individual was identified, but not currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>ID_NUMBER</code></td>
+                    <td><nobr>An even id number (ex: <code>12346</code>)</nobr></td>
+                    <td><code>true</code></td>
+                    <td>The individual was identified and currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>ID_NUMBER</code></td>
+                    <td><nobr>A id number of 0 (ex: <code>0</code>)</nobr></td>
+                    <td><code>null</code></td>
+                    <td>The individual was unable to be identified.</td>
+                </tr>
+            </table>
+
+            <p>When verifying an Employee you will have to use the <code>POSTAL_CODE</code> since it is the only required field of the 4 fields mentioned above in the hierarchical order.</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Field</th>
+                    <th>Value Supplied</th>
+                    <th>Verification Result</th>
+                    <th>Summary</th>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>An odd postal code (ex: <code>97401</code>)</nobr></td>
+                    <td><code>false</code></td>
+                    <td>The individual was identified, but not currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>An even postal code (ex: <code>97402</code>)</nobr></td>
+                    <td><code>true</code></td>
+                    <td>The individual was identified and currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>A postal code of 0 (ex: <code>0</code>)</nobr></td>
+                    <td><code>null</code></td>
+                    <td>The individual was unable to be identified.</td>
+                </tr>
+            </table>
+
+            <p>When verifying a First Responder you can use the <code>BIRTH_DATE</code> however ONLY Police can simulate AUTHORITATIVE verification using <code>BIRTH_DATE</code>.</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Field</th>
+                    <th>Value Supplied</th>
+                    <th>Verification Result</th>
+                    <th>Summary</th>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></td>
+                    <td><nobr>An odd birth year (ex: <code>1991-04-26</code>)</nobr></td>
+                    <td><code>false</code></td>
+                    <td>The individual was identified, but not currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></td>
+                    <td><nobr>An even birth year (ex: <code>1992-04-26</code>)</nobr></td>
+                    <td><code>true</code></td>
+                    <td>The individual was identified and currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>BIRTH_DATE</code></td>
+                    <td><nobr>Any future date (ex: <code>2099-04-26</code>)</nobr></td>
+                    <td><code>null</code></td>
+                    <td>The individual was unable to be identified.</td>
+                </tr>
+            </table>
+
+            <P>When verifying <a href="/docs/fields.html">affiliation types that do not have an authoritative source</a> to check against the verification will return null.  To test manual verification scenarios a user can use the <a href="/docs/asset/upload.html">asset upload api method</a> to upload documents which can be reviewed in the asset review utility in the control center and approved or rejected.</p>
+
+            <h2>Testing Server Delay/Latency</h2>
+            <p>Occasionally, SheerID authoritative sources may be experiencing delays. To simulate a delay for the verification response, perform a verification using <code>FIRST_NAME = delay</code> and <code>LAST_NAME = $delayInMilliseconds</code>, up to 10000 (10 seconds).</p>
+            <p>Example verification request with an 8 second delay:</p>
+            <code class="block">$ curl -H "Authorization: Bearer $TOKEN" -d _affiliationTypes=FACULTY -d organizationType=UNIVERSITY -d FIRST_NAME=Delay -d LAST_NAME=8000 -d BIRTH_DATE=1999-12-01 -d EMAIL=test@example.com -d organizationId=191982 https://services-sandbox.sheerid.com/rest/0.5/verification</code>
+
+            <h2>Testing Recoverable Errors and Unsupported Instant Verification Scenarios</h2>
+            <p>SheerID authoritative sources may return multiple results for a verification request based on the fields submitted for verification. Additionally, authoritative sources may be unavailable or we may not have authoritative coverage for the specific affiliation attempting to be verified.</p>
+            <p>To simulate these error scenarios for the verification response, perform a verification using <code>FIRST_NAME = error</code> and <code>LAST_NAME = $errorCode</code>.</p>
+            <p>Error codes that can be tested in this fashion:</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr><th>Code</th><th>Description</th></tr>
+                <tr><td><code>0</code></td><td>Unknown error</td></tr>
+                <tr><td><code>39</code></td><td>Awaiting documentation upload</td></tr>
+                <tr><td><code>40</code></td><td>More information is needed to uniquely match an individual</td></tr>
+                <tr><td><code>41</code></td><td>Data source is unable to satisfy request</td></tr>
+                <tr><td><code>49</code></td><td>Data source is temporarily unavailable</td></tr>
+            </table>
+            <p>Example verification request with a data source temporarily unavailable error:</p>
+            <code class="block">$ curl -H "Authorization: Bearer $TOKEN" -d _affiliationTypes=FACULTY -d organizationType=UNIVERSITY -d FIRST_NAME=Error -d LAST_NAME=49 -d BIRTH_DATE=1999-12-01 -d EMAIL=test@example.com -d organizationId=191982 https://services-sandbox.sheerid.com/rest/0.5/verification</code>
+            <p>To see the full list of API error codes <a href="/docs/errorCodes.html">click here</a>.</p>
+
+            <h2>Testing Instructions for SSO</h2>
+            <p>First, you will need to pick an Organization that has an SSO provider configured. You should be able to find this in Organization Management (tag: HEI-SSO). These organizations can also be listed via REST API (see the following example URL):</p>
+            <code class="block">
+                https://services-sandbox.sheerid.com/rest/0.5/organization?type=UNIVERSITY&tag=HEI-SSO&country=GB
+            </code>
+            <p>Use the following curl command as an example to test SSO verification using the sandbox.</p>
+            <code class="block">
+                $ curl -H "Authorization: Bearer $TOKEN" -d _affiliationTypes=FACULTY -d organizationType=UNIVERSITY -d FIRST_NAME=Sam -d LAST_NAME=Doe -d BIRTH_DATE=1999-12-01 -d EMAIL=$(uuidgen)@example.com -d organizationId=191982 https://services-sandbox.sheerid.com/rest/0.5/verification
+            </code>
+            <p>Next, we will use the following curl command to check to make sure the result = null for the verification by using the requestId from the previous curl response.</p>
+            <code class="block">
+                $ curl -H "Authorization: Bearer $TOKEN" https://services-sandbox.sheerid.com/rest/0.5/verification/${requestId}
+            </code>
+            <p>Next, in a browser navigate to the following url using the requestId that was returned in the response from the command above.</p>
+            <code class="block">
+                https://services-sandbox.sheerid.com/rest/0.5/verification/sso/${requestId}
+            </code>
+            <p>The page that opens up will have instructions on how to log in etc. If you run the previous curl command again you will notice that the status='PENDING' and the result=null. This page uses cookies to store the SSO session token so if you wish to do multiple verifications you will need to clear cookies between tests or use the incognito browser.</p>
+            <p>If you log in with valid credentials (provided on the login page) that match the affiliation type(s) being verified (see table below), you will see the following message 'Verification Complete'. Now if you re-run the previous curl command you will notice that the status='COMPLETE' and the result='true'</p>
+
+            <p>If you log in with valid credentials (provided on the login page) that do not match the affiliation type(s) being verified (see table below), you will see the following message 'Verification Complete'. Now if you re-run the previous curl command you will notice that the status='COMPLETE' and the result='false'</p>
+
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Username</th>
+                    <th>Affiliations</th>
+                </tr>
+                <tr>
+                    <td>myself</td>
+                    <td>Teacher, Student</td>
+                </tr>
+                <tr>
+                    <td>alterego</td>
+                    <td>Student</td>
+                </tr>
+                <tr>
+                    <td>superego</td>
+                    <td>Teacher</td>
+                </tr>
+            </table>
+
+            <h2>Testing Instructions for EMAIL LOOP</h2>
+            <p>In the Organization Management you will notice that each organization has an email domain whitelist. These domains can be used to validate that the user actually has an email address with the whitelist.</p>
+            <p>An email is sent to the user with a link with a verification code that will need to be clicked. If the user clicks the link and the verification code is correct then they have been validated by the <code>EMAIL_LOOP</code> source.</p>
+
+            <h2>Testing Instructions for IP ADDRESS</h2>
+            <p><code>IP_ADDRESS</code> is similar validated in a similar fashion. In the Organization Management you will notice that there is an IP List. Every request has a metadata where the IP Address is stored.</p>
+            <p>If the user's IP Address is in the org list then they will get validated by the <code>IP_ADDRESS</code> source.</p>
+
+            <h2>Testing Instructions for High Assurance Teacher Verification</h2>
+            <p>In order to test the High Assurance Teacher Verification you must set the assuranceLevel=HIGH</p>
+
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Field</th>
+                    <th>Value Supplied</th>
+                    <th>Verification Result</th>
+                    <th>Summary</th>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>An even postal code (ex: <code>97404</code>)</nobr></td>
+                    <td><code>true</code></td>
+                    <td>The individual was identified and currently enrolled/affiliated.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>An odd postal code (ex: <code>97401</code>)</nobr></td>
+                    <td><code>false</code></td>
+                    <td>The individual was identified, but did not have a complete match on the necessary data.</td>
+                </tr>
+                <tr>
+                    <td class="name"><code>POSTAL_CODE</code></td>
+                    <td><nobr>A postal code of 0 (ex: <code>0</code>)</nobr></td>
+                    <td><code>null</code></td>
+                    <td>The individual was unable to be identified.</td>
+                </tr>
+            </table>
+
+            <p>If the result = false you can use the following <code>FIRST_NAME</code> to test the different verification errors:</p>
+            <table class="table table-bordered table-condensed table-striped sheerid-green">
+                <tr>
+                    <th>Result Code</th>
+                    <th>First Name</th>
+                    <th>Verification Error(s)</th>
+                </tr>
+                <tr>
+                    <td><code>false</code></td>
+                    <td>FOO</td>
+                    <td>FIRST NAME NOT VERIFIED, LAST NAME NOT VERIFIED</td>
+                </tr>
+                <tr>
+                    <td><code>false</code></td>
+                    <td>BAR</td>
+                    <td>EMAIL.domain NOT VERIFIED</td>
+                </tr>
+                <tr>
+                    <td><code>false</code></td>
+                    <td><code>ANY NAME</code></td>
+                    <td>EMAIL NOT VERIFIED, EMAIL.domain NOT VERIFIED</td>
+                </tr>
+            </table>
+            <h2>Testing Instructions for VALIDATION</h2>
+            <p>In the Organization Management you will notice that each organization has an email domain whitelist. These domains can be used to validate that the user actually has an email address with the whitelist. When performing a VALIDATION request, the result will be true when the provided email is consistent with a configured whitelist domain for the organization involved, and null when the email address provided does not reflect a configured whitelist domain.</p>
+        </div>
+    </div>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-25697054-3', 'sheerid.com');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>

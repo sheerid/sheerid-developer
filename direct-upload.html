@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Direct Asset Upload</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+			</ul>
+			<h1>Direct Asset Upload</h1>
+			
+			<h2>Overview</h2>
+			
+			<p>SheerID's Asset Review verification source allows end-users to supply photographs/scans of documentation proving their affiliation, such as a membership card, transcript, pay stub etc.  The direct asset upload feature of the API allows end-users to submit their documents directly to SheerID to ensure they are transferred quickly and securely into SheerID's review system, without the integrator having to act as an intermediary for the file transfer.</p>
+			
+			<h2>Techniques</h2>
+			
+			<p>Below is a list of techniques that can be employed to take advantage of the direct asset upload.  Note that in each of these cases, you will need to have performed the following steps:</p>
+			
+			<ol>
+			<li>Perform a verification using the <a href="http://developer.sheerid.com/docs/verification/verify.html">Verify</a> method</li>
+			<li>Create an asset upload token using the <a href="http://developer.sheerid.com/docs/asset/issueToken.html">Issue Token</a> method</li>
+			</ol>
+			
+			<div class="alert alert-info"><strong>NOTE:</strong> the URLs shown in this document refer to the production environment.  The same techniques can be used in the sandbox environment by replacing the hostname <code>services.sheerid.com</code> with <code>services-sandbox.sheerid.com</code> where appropriate.</div>
+			
+			<h3>Hosted Upload Page</h3>
+			
+			<p>Link to the SheerID-hosted Upload page, including your asset upload token in the query string as shown:</p>
+			
+			<pre><code>https://services.sheerid.com/upload/?token=${assetUploadToken}</code></pre>
+			
+			<h3>Custom Form</h3>
+			
+			<p>Configure a form on your site that posts directly to the SheerID API.  Ensure that your form is configured with an <code>enctype</code> attribute set to <code>multipart/form-data</code>.</p>
+			
+<pre><code>&lt;form enctype="multipart/form-data" method="POST" action="https://services.sheerid.com/rest/0.5/asset"&gt;
+    &lt;input type="hidden" name="token" value="${assetUploadToken}"/&gt;
+    &lt;input name="success" type="hidden" value="${successUrl}"/&gt;
+    &lt;input name="failure" type="hidden" value="${failureUrl}"/&gt;
+    &lt;label&gt;File: &lt;/label&gt;&lt;input type="file" name="file"/&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+			
+			<p>Form elements:</p>
+			
+			<ul>
+			<li><code>token</code> - your asset upload token</li>
+			<li><code>file</code> - a file-upload field that represents the file data.  Note: you may upload multiple files at once by supplying additional parameters prefixed by <code>file</code> (example: <code>file0</code>, <code>file1</code>, etc.)</li>
+			<li><code>successUrl</code> - a URL to which the user is redirected upon successful upload.</li>
+			<li><p><code>failureUrl</code> - a URL to which the user is redirected upon upload failure or configuration error.  A query string parameter, <code>error</code>, will be appended to this URL to provide more information about the nature of the error.</p>
+			
+			<ul>
+			<li><code>?error=400</code> - required fields are missing or invalid, file field is empty</li>
+			<li><code>?error=401</code> - the token is invalid or expired</li>
+			<li><code>?error=500</code> - unexpected server error</li>
+			</ul></li>
+			</ul>
+
+			<h3>AJAX (Cross-Origin Resource Sharing)</h3>
+
+
+	<p>Uploads can be peformed in an XMLHttpRequest across domain boundaries (Asset Upload endpoint has support for CORS), allowing for a highly customizable file upload user experience. The following example demonstrates the use of <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a> with jQuery to POST documents using AJAX. This approach is not supported in some older browsers, so make sure to check the compatibility of CORS and FormData in your target environment.</p>
+        <a href="sample-code/ajax.html" class="code-sample">AJAX Asset Upload Demo</a>
+			
+<h4>Drag and Drop Support</h4>
+
+ <p>The CORS/AJAX upload option allows for customizations to the user experience, as demonstrated in this <a href="sample-code/drag-drop.html">Drag and Drop demo using Dropzone.js</a></p>
+
+			<h3>Javascript API</h3>
+			
+			<p>SheerID provides a Javascript snippet which renders a form similar to that shown in the previous example.</p>
+			
+<pre><code>&lt;div id="upload"&gt;&lt;/div&gt;
+&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+SheerID.load('asset', '1.0', {
+    config: {
+        baseUrl: 'https://services.sheerid.com/rest/0.5', // make sure this points at the right environment
+        container: 'upload', // the ID of an element in the page inside of which the form should be rendered
+        maxFiles: 3, // the maximum number of files that can be uploaded at a time
+        success : '${successUrl}', // replace with your success URL
+        failure : '${failureUrl}', // replace with your failure URL
+        ajax: true, // whether to use "AJAX"-style upload, see discussion below
+        token: '${assetUploadToken}' // replace with your asset upload token
+    }
+});
+&lt;/script&gt;
+</code></pre>
+			
+			<h4>A note about AJAX mode</h4>
+			
+			<p>AJAX-style uploads can be used to keep the end-user on the same page while the upload is processing and after it has completed.  The background file upload is not actually using AJAX but rather POSTing to a hidden iframe and waiting for the result.  The success and failure URLs in this case are not displayed to the user, but instead used as indicators of the success/failure status of the upload request.  For this reason, it is very important that these URLs match completely the domain, port and protocol of the page serving the upload form, in order for the event handlers to properly detect a completed upload.  With AJAX mode disabled (this is the default configuration), the form will send the user to the redirect pages as described in the previous example.</p>
+		</div>
+	</div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-25697054-3', 'sheerid.com');
+		ga('send', 'pageview');
+
+	$('a.code-sample').each(function(){
+		var link = $(this);
+		$.get(link.attr('href'), {}, function(res){
+			link.replaceWith($('<pre></pre>').append($('<code></code>').text(res.trim())));
+		}, 'text');
+        });
+	</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SheerID - Drag and Drop Asset Upload Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css" type="text/css" />
+</head>
+<body>
+    <h1>Drag and Drop Asset Upload Example</h1>
+    <p>This is a demonstration of SheerID REST API <a href="http://developer.sheerid.com/docs/asset/upload.html" target="_blank">Asset Upload</a> integration with <a href="http://www.dropzonejs.com" target="_blank">Dropzone drag-and-drop file upload library.</a></p>
+    <p>To view the demo, provide a valid <a href="http://developer.sheerid.com/docs/asset/issueToken.html" target="_blank">Asset Upload Token</a> via <code>token</code> query string parameter. This token should be issued from the SheerID Sandbox environment.</p>
+    <form id="dropzone-demo" class="dropzone" action="https://services-sandbox.sheerid.com/rest/0.5/asset"></form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+    <script>
+    /**
+     * Demonstration of SheerID Asset Upload REST API integration with Dropzone drag-and-drop file upload library
+     * 
+     * References:
+     *   http://www.dropzonejs.com
+     *   http://developer.sheerid.com/docs/asset/upload.html
+     */
+    Dropzone.autoDiscover = false;
+    window.addEventListener("load", function() {
+        var query = window.location.search,
+            token_match = query.match(/^\?token=(.*)$/),
+            token = token_match ? token_match[1] : null;
+
+        if (!token) {
+            token = window.prompt("Please provide an Asset Upload token:");
+        }
+        DZ = new Dropzone('#dropzone-demo', {
+            paramName: "file",
+            maxFilesize: 2, // MB
+            uploadMultiple: true,
+            accept: function(file, done) {
+                // Actual file type support is broader than just images, this is simply for demo purposes
+                //  See http://developer.sheerid.com/docs/asset-mime-types.html
+                if (/.(png|gif|jpe?g)/i.test(file.name)) {
+                    done();
+                } else {
+                    done('Unsupported file type');
+                }
+            },
+            // Suppress these headers added by Dropzone, they are disallowed by SheerID CORS implementation
+            headers: {
+              "Cache-Control": "",
+              "X-Requested-With": ""
+            },
+            init : function(){
+                var dz = this;
+                this.on('sending', function(file, xhr, formData) {
+                    // make sure we also supply asset upload token
+                    formData.append("token", token);
+                });
+                this.on('error', function(file, response, xhr) {
+                    if (xhr) {
+                        var errorMessage = 'HTTP status ' + response.httpStatus;
+                        file.previewElement.getElementsByClassName('dz-error-message')[0].innerHTML = errorMessage;
+                    }
+                });
+                this.on('success', function(file, response) {
+                    alert('Successfully uploaded file: ' + file.name);
+
+                    // remove drop zone since asset upload token is revoked after upload
+                    dz.element.parentNode && dz.element.parentNode.removeChild(dz.element);
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>

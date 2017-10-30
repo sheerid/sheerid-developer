@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | General Developer Guidelines</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+			</ul>
+			<h1>General Developer Guidelines</h1>
+
+            <h2>Authentication</h2>
+
+            <p>All API calls must be authenticated, please see the document <a href="requests.html">Issuing Requests</a> for more details.</p>
+
+            <h2>Rate Limiting</h2>
+
+            <p>REST API requests are subject to rate limits. Any applicable rate limits for a given REST resource endpoint are listed on its documentation page. Please also refer to the <a href="rate-limits.html">Rate Limiting</a> documentation for more general information.</p>
+
+			<h2>Date Format</h2>
+			
+			<p>By default, all dates are expected in the format of <code>YYYY-MM-DD</code> (for example, <code>1996-07-23</code>).</p>
+
+			<p>If you would like to set a custom date format you must provide a formatting string along with the data. This is indicated by prefixing the field name with a percent sign (<code>%</code>) like so:</p>
+
+			<p><code>curl -d &quot;BIRTH_DATE=July 23, 96&quot; -d &quot;%BIRTH_DATE=MMMM d, yy&quot; &hellip; $VERIFICATION_URL</code></p>
+
+			<p>The formatting string follows the conventions of <a href="http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html">java.text.SimpleDateFormat</a></p>
+
+			<h2>Error Codes and Conditions</h2>
+
+			<p>API responses come primarily through HTTP status codes, though sometimes there is additional information in the response. Below are the error codes you can expect to receive and their general meanings.  Individual REST endpoints may also have more specific documentation about expected error conditions.  For an overview of how HTTP status codes are used to relay errors (with some examples), see our <a href="http-errors.html">REST HTTP Errors documentation</a>.</p>
+
+			<table class="table table-bordered sheerid-green"><thead>
+			<tr>
+			<th>Code</th>
+			<th>Meaning</th>
+			<th>Suggestions</th>
+			</tr>
+			</thead><tbody>
+			<tr>
+			<td><code>200</code>, <code>204</code></td>
+			<td>Call completed successfully.</td>
+			<td></td>
+			</tr>
+			<tr>
+			<td><code>400</code></td>
+			<td>The request you have submitted is not valid</td>
+			<td>Check the documentation and ensure you are supplying all required parameters.  Ensure that data supplied is valid.  Refer to returned error message(s) for more detailed information.</td>
+			</tr>
+			<tr>
+			<td><code>401</code></td>
+			<td>The access credentials provided were not valid</td>
+			<td>Check the access token provided.</td>
+			</tr>
+			<tr>
+			<td><code>403</code></td>
+			<td>You do not have access to this resource</td>
+			<td>Check that you have been granted access to the resource you are attempting to access.</td>
+			</tr>
+			<tr>
+			<td><code>404</code></td>
+			<td>You are trying to reach an endpoint that does not exist</td>
+			<td>Check the documentation and your spelling. For URLs that represent an object, check that the ID of an object you are trying to access is valid.</td>
+			</tr>
+			<tr>
+			<td><code>405</code></td>
+			<td>You are trying to reach an endpoint that does not allow the method attempted.</td>
+			<td>Look up the method you are using in the documentation and check which HTTP method you are using.</td>
+			</tr>
+			<tr>
+			<tr>
+			<td><code>500</code></td>
+			<td>Our server experienced a problem and was unable to meaningfully respond</td>
+			<td>Please contact SheerID for more information.</td>
+			</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-25697054-3', 'sheerid.com');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>

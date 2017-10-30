@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Issuing Requests</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+			</ul>
+		
+			<h1>Issuing Requests</h1>
+			<p>There are two instances of the SheerID REST API: Sandbox and Production, each with a distinct hostname as shown in the table below.</p>
+			
+			
+			<table class="table table-bordered table-condensed table-striped sheerid-green">
+				<tr>
+					<th>Hostname</th>
+					<th>API Instance</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td class="name"><code>services.sheerid.com</code></td>
+					<td><nobr>Production</nobr></td>
+					<td>Routes requests to live verification data sources.  Access is restricted to authorized accounts.</td>
+				</tr>
+				<tr>
+					<td class="name"><code>services-sandbox.sheerid.com</code></td>
+					<td><nobr>Sandbox</nobr></td>
+					<td>Available for development and integration testing purposes. Uses the <a href="sandbox-source.html">SheerID Sandbox Verification Source.</a></td>
+				</tr>
+			</table>
+			
+			<h2>Authentication</h2>
+			<p>SheerID's REST API authentication layer is based on the <a href="https://tools.ietf.org/html/rfc6749">OAuth 2.0 Authorization Framework</a>, specifically the <a href="https://tools.ietf.org/html/rfc6750">Bearer Token</a> authentication scheme.</p>
+		
+			<h3>Obtaining Your Token</h3>
+			<p>API Access Tokens can be issued from the API Access Tokens link under Settings on the respective Control Center Home page of the environment you are issuing a token for. Sandbox API Access tokens are issued from the <a href="https://services-sandbox.sheerid.com">Sandbox Control Center</a>. Production API Access tokens are issued from the <a href="https://services.sheerid.com">Production Control Center</a>.</p>
+			<p>API Access Tokens have no default expiration cycle, and can be revoked or re-generated as needed to meet your application management objectives.</p>
+		
+			<h3>Authorization Header</h3>
+			<p>Bearer tokens are supplied to the server via the Authorization header.  The format for this header's value is <code>Bearer ${TOKEN}</code>, where <code>${TOKEN}</code> is your personal access token.  In the example request shown below, the access token is <code>8304029af5ab9f0acb5820bfb5ddc293</code>.  For more information on usage, please review the <a href="https://tools.ietf.org/html/rfc6750">OAuth2 Bearer Token spec</a>.</p>
+			<pre>GET /rest/0.5/organization HTTP/1.1
+Host: services-sandbox.sheerid.com
+Authorization: Bearer 8304029af5ab9f0acb5820bfb5ddc293</pre>
+		
+			<h3>Example Requests</h3>
+			<p>In the examples below, we show how <code>curl</code> can be used to issue requests which supply a properly-constructed Authorization header.  The same request formatting can and should be used in your programming language of choice.  For the examples shown, it is assumed that <code>${TOKEN}</code> is an environment variable or is otherwise replaced with your personal access token.</p>
+		
+			<h4>Example GET Request</h4>
+			<pre>curl -H "Authorization: Bearer ${TOKEN}" https://services-sandbox.sheerid.com/rest/0.5/organizationType</pre>
+
+			<h4>Example POST Request</h4>
+			<pre>curl -H "Authorization: Bearer ${TOKEN}" -d "FIRST_NAME=Test&amp;LAST_NAME=User&amp;SSN_LAST4=1234" https://services-sandbox.sheerid.com/rest/0.5/verification</pre>
+		</div>
+	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-25697054-3', 'sheerid.com');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>

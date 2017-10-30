@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <form enctype="multipart/form-data" method="POST" action="https://services.sheerid.com/rest/0.5/asset">
+        <input type="hidden" name="token" value="${assetUploadToken}"/>
+        <label>File: </label><input type="file" name="file"/>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <script>
+    jQuery(function($){
+        $('form').submit(function(){
+            var data = new FormData();
+            $(':input', this).each(function(){
+                if (this.files) {
+                    $.each(this.files, function(i, file) {
+                        data.append('file-'+i, file);
+                    });
+                } else {
+                    data.append(this.name, this.value);
+                }
+            });
+
+            $.ajax({
+                url: $(this).attr('action'),
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function(data){
+                    alert(JSON.stringify(data));
+                }
+            });
+            return false;
+        });
+    });
+    </script>
+</body>
+</html>

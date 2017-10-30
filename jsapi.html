@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SheerID Developer Center | JavaScript API</title>
+    <link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+    <link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+                <div>
+                    <div class="pull-right">
+                        <a href="/" class="title">SheerID Developer Center</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+            </ul>
+            <h1>JavaScript API</h1>
+
+            <h2>Overview</h2>
+
+            <p>SheerID's JavaScript API provides functionality that is useful when integrating SheerID into user-facing web applications.  The JavaScript API consists of a base JavaScript include (<code>https://services.sheerid.com/jsapi/SheerID.js</code></code>) and a number of useful modules which can be included and configured, each of which is described in the <a href="#modules">Modules</a> section below.</p>
+            <h4>Common Module Configuration</h4>
+            <p>The following configuration options are available for all modules and are configured in the same way as module-specific configuration.</p>
+            <table class="table table-bordered table-striped sheerid-green">
+                <tr>
+                    <th>Configuration Key</th>
+                    <th>Required?</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
+                </tr>
+                <tr>
+                    <td><code>baseUrl</code></td>
+                    <td>No</td>
+                    <td>The URL prefix for REST API interactions. To use the sandbox API, set this value to <code>https://services-sandbox.sheerid.com</code></td>
+                    <td><code>https://services.sheerid.com</code></td>
+                </tr>
+            </table>
+            <h4>Generic Usage Pattern</h4>
+
+<pre><code>&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+SheerID.load('${module_name}', '${module_version}', {
+    config: {
+        '${config_key1}' : '${config_value1}',
+        ...
+        '${config_keyN}' : '${config_valueN}'
+    }
+});
+&lt;/script&gt;
+</code></pre>
+
+            <h2 id="modules">Modules</h2>
+            <h3 id="module-asset">Asset Upload</h3>
+            <p>This module facilitates an upload of a document using the <a href="/docs/asset/upload.html">Asset Upload</a> REST resource method.</p>
+            <dl>
+                <dt>Module Name:</dt>
+                <dd><code>asset</code></dd>
+                <dt>Supported Version(s):</dt>
+                <dd><code>1.0</code></dd>
+            </dl>
+            <h4>Module Configuration</h4>
+            <table class="table table-bordered table-striped sheerid-green">
+                <tr>
+                    <th>Configuration Key</th>
+                    <th>Required?</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
+                </tr>
+                <tr>
+                    <td><code>token</code></td>
+                    <td>Yes</td>
+                    <td>An asset upload token obtained from the <a href="/docs/asset/issueToken.html">Issue Token</a> REST resource method.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>container</code></td>
+                    <td>Yes</td>
+                    <td>The ID of an element in the page inside of which the form should be rendered.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>maxFiles</code></td>
+                    <td>No</td>
+                    <td>The maximum number of files that can be uploaded at a time.</td>
+                    <td><code>1</code></td>
+                </tr>
+                <tr>
+                    <td><code>ajax</code></td>
+                    <td>No</td>
+                    <td>Use AJAX-style upload keep the end-user on the same page while the upload is processing and after it has completed.</td>
+                    <td><code>false</code></td>
+                </tr>
+                <tr>
+                    <td><code>success</code></td>
+                    <td>Only if <code>ajax = true</code></td>
+                    <td>A URL to redirect to upon successful upload.</td>
+                    <td><em>None (raw JSON response is displayed)</em></td>
+                </tr>
+                <tr>
+                    <td><code>failure</code></td>
+                    <td>Only if <code>ajax = true</code></td>
+                    <td>A URL to redirect to upon encountering an error uploading the file.</td>
+                    <td><em>None (raw JSON error response is displayed)</em></td>
+                </tr>
+                <tr>
+                    <td><code>messages</code></td>
+                    <td>No</code></td>
+                    <td>A object literal of string key/value pairs used to modify the default text generated.  See the Usage Example below for a list of the default key/value pairs.  Customers who wish to present this module within localized interfaces, will need to provide localized versions of the strings within the message object.</td>
+                    <td><em>See below for default (English) messages</em></td>
+                </tr>
+            </table>
+
+            <p class="alert alert-info"><strong>A note about AJAX mode:</strong> The background file upload is not actually using AJAX but rather POSTing to a hidden iframe and waiting for the result.  The success and failure URLs in this case are not displayed to the user, but instead used as indicators of the success/failure status of the upload request.  For this reason, it is very important that these URLs match <em>completely</em> the domain, port and protocol of the page serving the upload form, in order for the event handlers to properly detect a completed upload.</p>
+
+            <h4>Usage Example</h4>
+            <pre><code>&lt;div id="upload"&gt;&lt;/div&gt;
+&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+SheerID.load('asset', '1.0', {
+    config: {
+        container: 'upload',
+        maxFiles: 3,
+        success : '${successUrl}', // replace with your success URL
+        failure : '${failureUrl}', // replace with your failure URL
+        ajax: true,
+        token: '${assetUploadToken}',
+        messages: {
+            'instructions': 'Please upload document(s) that prove your affiliation.',
+            'add_file': 'Add another file...',
+            'error400': 'Bad Request',
+            'error401': 'Bad Token',
+            'error403': 'Upload Not Allowed',
+            'error415': 'Invalid File Type',
+            'error500': 'Server Error',
+            'error': 'Unknown Error',
+            'nofile': 'Please ensure that you have selected at least one file to upload.',
+            'submit': 'Submit',
+            'submitButtonPrefix': '',
+            'submitButtonSuffix': '',
+            'success': 'Upload Complete!',
+            'uploading': 'Uploading...',
+            'uploadTimeout': 'It appears we may have encountered an issue uploading your document(s).',
+            'linkDirectUpload': 'Click here to try the conventional upload method instead.'
+        }
+    }
+});
+&lt;/script&gt;
+</code></pre>
+
+            <h3 id="module-combobox">Organization Combobox</h3>
+            <p>This module simplifies the process of specifying a SheerID organization for use in the <a href="/docs/verification/verify.html">Verify</a> REST resource method. Using this module will transform an existing HTML input field into a type-ahead/combobox that helps the user select the appropriate organization.</p>
+            <dl>
+                <dt>Module Name:</dt>
+                <dd><code>combobox</code></dd>
+                <dt>Supported Version(s):</dt>
+                <dd><code>1.0</code> <code>2.0</code></dd>
+            </dl>
+            <h4>Module Configuration</h4>
+            <table class="table table-bordered table-striped sheerid-green">
+                <tr>
+                    <th>Configuration Key</th>
+                    <th>Required?</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
+                </tr>
+                <tr>
+                    <td><code>input</code></td>
+                    <td>Yes</td>
+                    <td>A reference to a DOM (input) element that will be converted into the combobox.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>allowName</code></td>
+                    <td>No</td>
+                    <td><code>true</code> to allow users to specify an organization name that is not in the list, otherwise combobox will require the user to select an option from the list.</td>
+                    <td><code>false</code></td>
+                </tr>
+                <tr>
+                    <td><code>proxyName</code></td>
+                    <td>No</td>
+                    <td>If set, the text entered into the combobox field will be submitted by the current form with this parameter name.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>mode</code></td>
+                    <td>No</td>
+                    <td><code>select</code> mode can be used to render as a standard HTML <code>select</code> element instead of a type-ahead.</td>
+                    <td><code>combobox</<code></td>
+                </tr>
+                <tr>
+                    <td><code>trigger</code></td>
+                    <td>No</td>
+                    <td>Determines whether a drop-down toggle is displayed in the right-hand side of the combobox to allow selection of an organization with a mouse.</td>
+                    <td><code>true</<code></td>
+                </tr>
+                <tr>
+                    <td><code>params</code></td>
+                    <td>No</td>
+                    <td>An object literal containing request parameters that will be supplied to the <a href="/docs/organization/listOrganizations.html">List Organizations</a> or the <a href="/docs/organization/typeahead.html">Typeahead</a> resource method to further refine the organizations that are returned.  This can be used to modify the combobox for international use by assigning the parameter <code>country</code> to a value containing a string of the corresponding country code and the parameter <code>includeLocation</code> to the boolean <code>true</code>.</td>
+                    <td><em>none</em></td>
+                </tr>
+                <tr>
+                    <td><code>customOrganizations</code></td>
+                    <td>No</td>
+                    <td>An array of additional organization names (if any) that should be added to the list fetched via API. When one of these options is selected, the underlying input value will be 0, so this should be used in conjunction with the <code>proxyName</code> and <code>allowName</code> configuration options so that the selected name is submitted.</td>
+                    <td><em>none</em></td>
+                </tr>
+            </table>
+
+            <h4>Usage Example (Version 2.0)</h4>
+<pre><code>
+&lt;form&gt;
+    &lt;input type="text" name="organization.id" id="orgId" placeholder="School Name" /&gt;
+    &lt;input type="text" name="data['FIRST_NAME']" id="custFirstName" placeholder="First Name" /&gt;
+    &lt;input type="text" name="data['LAST_NAME']" id="custLastName" placeholder="Last Name" /&gt;
+    &lt;input type="text" name="data['EMAIL']" id="custEmail" placeholder="Email" /&gt;
+    &lt;input type="text" name="data['POSTAL_CODE']" id="custZipCode" placeholder="Zip Code" /&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script src="https://code.jquery.com/jquery-1.12.4.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    SheerID.load('combobox', '2.0', {
+        config: {
+            input: document.getElementById('orgId'),
+            allowName: true,
+            proxyName: 'organization.name',
+            listeners: {
+                change: function(orgEntity) {
+                    document.getElementById('custZipCode').value = orgEntity.zip;
+                }
+            },
+            params: {
+                type: ['UNIVERSITY', 'K12'],
+                includeLocation: true,
+                country: 'US'
+            }
+        }
+    });
+&lt;/script&gt;
+</code></pre>
+            <h4>Usage Example (Version 1.0)</h4>
+<pre><code>
+&lt;form&gt;
+    &lt;input type="text" name="organizationId" id="myOrgId" /&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+SheerID.load('combobox', '1.0', {
+    config: {
+        input: document.getElementById('myOrgId'),
+        allowName: true,
+        proxyName: 'organizationName',
+        mode: 'combobox',
+        trigger: true,
+        params: {
+            type: 'UNIVERSITY'
+        }
+    }
+});
+&lt;/script&gt;
+</code></pre>
+
+            <h3 id="module-redeem">Redeem Token</h3>
+            <p>This module provides integrators with a simple (client-side) way to <a href="/docs/token/redeemToken.html">redeem a Redemption token</a>.</p>
+            <p class="alert"><strong>Warning:</strong> We provide this component as a convenience to users that must use client-side techniques to handle a callback from SheerID, but our recommendation is always to perform the token check server-side.  If you must use this component, please use secure JavaScript programming techniques to protect your success/failure callbacks and understand that savvy users may be able to work around this implementation.</p>
+
+            <dl>
+                <dt>Module Name:</dt>
+                <dd><code>redeem</code></dd>
+                <dt>Supported Version(s):</dt>
+                <dd><code>1.0</code></dd>
+            </dl>
+            <h4>Module Configuration</h4>
+            <table class="table table-bordered table-striped sheerid-green">
+                <tr>
+                    <th>Configuration Key</th>
+                    <th>Required?</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
+                </tr>
+                <tr>
+                    <td><code>token</code></td>
+                    <td>Yes (or <code>tokenParam</code>)</td>
+                    <td>The redemption token to redeem.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>tokenParam</code></td>
+                    <td>Yes (or <code>token</code>)</td>
+                    <td>A query string parameter from which to read the redemption token.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>onSuccess</code></td>
+                    <td>No</td>
+                    <td>A callback function to be executed upon successfully redeeming the token.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>onFailure</code></td>
+                    <td>No</td>
+                    <td>A callback function to be executed upon failing to redeeming the token because it is redeemed, expired or invalid.</td>
+                    <td><em>None</em></td>
+                </tr>
+                <tr>
+                    <td><code>onError</code></td>
+                    <td>No</td>
+                    <td>A callback function to be executed upon encountering an error when attempting to redeem the token. One argument will be passed which is a (string) error code (possible values: <code>"no_token"</code>).</td>
+                    <td><em>None</em></td>
+                </tr>
+            </table>
+
+            <h4>Usage Example</h4>
+            <pre><code>&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+SheerID.load('redeem', '1.0', {
+    config: {
+        tokenParam: 'sheerIdToken',
+        onSuccess: function() {
+            myPrivateObj.success();
+        },
+        onFailure: function() {
+            myPrivateObj.failure();
+        }
+    }
+});
+&lt;/script&gt;
+</code></pre>
+
+            <h3 id="iFrame">iFrame</h3>
+            <p>This module simplifies the setup of a SheerID hosted verification template within an iFrame. It uses postMessage() to send communications between the verification template and the iFrame object to adjust the height of the iFrame to match the content of the verification template for a more natural presentation.</p>
+            <dl>
+                <dt>Module Name:</dt>
+                <dd><code>iframe</code></dd>
+                <dt>Supported Version(s):</dt>
+                <dd><code>1.0</code> <code>1.1</code></dd>
+                <dt>Browser Compatibility:</dt>
+                <dd>Google Chrome 18+</dd>
+                <dd>Mozilla Firefox 15+</dd>
+                <dd>Internet Explorer 9+</dd>
+                <dd>Safari 5+</dd>
+                <dd>Opera 12+</dd>
+            </dl>
+            <h4>Module Configuration</h4>
+            <table class="table table-bordered table-striped sheerid-green">
+                <tr>
+                    <th>Configuration Key</th>
+                    <th>Required?</th>
+                    <th>Description</th>
+                    <th style="width:145px;">Default Value</th>
+                </tr>
+                <tr>
+                    <td><code>lightbox</code></td>
+                    <td>No</td>
+                    <td><code>true</code> will present the iFrame as a lightbox popup. The remaining configuration keys apply to the lightbox iFrame. <code>false</code> will apply a default config which sets the iFrame container's width to 100%.</td>
+                    <td><code>true</code></td>
+                </tr>
+                <tr>
+                    <td><code>width</code></td>
+                    <td>No</td>
+                    <td>String containing the width of the iFrame as a css value.</td>
+                    <td><code>"600px"</code></td>
+                </tr>
+                <tr>
+                    <td><code>height</code></td>
+                    <td>No</td>
+                    <td>String containing the height of the iFrame as a css value. If set to "fluid", the iFrame will listen for postMessages from the verification template and adjust its height to match.</td>
+                    <td><code>"fluid"</code></td>
+                </tr>
+                <tr>
+                    <td><code>maxHeight</code></td>
+                    <td>No</td>
+                    <td>Number to check the height of the iFrame content against. If the height received from the message is larger than the maxHeight, the iFrame's height will be set to the maxHeight and the iFrame will use a scroll bar. The maxHeight property is only supported in version 1.1 or greater.</td>
+                    <td><code>null</code></td>
+                </tr>
+                <tr>
+                    <td><code>mobileRedirect</code></td>
+                    <td>No</td>
+                    <td><code>true</code> will redirect the user directly to the verification template rather than display the lightbox when the user's screen width is less then the mobileThreshold. This provides a better user experience on mobile devices which have trouble displaying popups.</td>
+                    <td><code>true</<code></td>
+                </tr>
+                <tr>
+                    <td><code>mobileThreshold</code></td>
+                    <td>No</td>
+                    <td>The value in px to check against the user's screen width to determine whether to display the lightbox or redirect to the verification template.</td>
+                    <td><code>600</<code></td>
+                </tr>
+                <tr>
+                    <td><code>top</code></td>
+                    <td>No</td>
+                    <td>String containing the position from the top of the browser window the lightbox should position itself as a css value.</td>
+                    <td><code>"10%"</code></td>
+                </tr>
+                <tr>
+                    <td><code>border</code></td>
+                    <td>No</td>
+                    <td>String containing the border style property for the lightbox wrapper as a css value.</td>
+                    <td><code>"2px solid #999"</code></td>
+                </tr>
+                <tr>
+                    <td><code>borderRadius</code></td>
+                    <td>No</td>
+                    <td>String containing the border radius for the lightbox wrapper as a css value.</td>
+                    <td><code>"0px"</code></td>
+                </tr>
+                <tr>
+                    <td><code>closeBtnTxt</code></td>
+                    <td>No</td>
+                    <td>String containing the text for the close lightbox link.</td>
+                    <td><code>""</<code></td>
+                </tr>
+                <tr>
+                    <td><code>closeBtnFont</code></td>
+                    <td>No</td>
+                    <td>String containing the font style for the close link text as a css value. See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font" target="_blank">CSS font property</a> for more info.</td>
+                    <td><code>"16px Arial,Serif"</<code></td>
+                </tr>
+                <tr>
+                    <td><code>closeBtnColor</code></td>
+                    <td>No</td>
+                    <td>String containing the color of the close link text as a css value.</td>
+                    <td><code>"#999"</code></td>
+                </tr>
+                <tr>
+                    <td><code>closeBtnImg</code></td>
+                    <td>No</td>
+                    <td>String containing the full url of an image to be used in the close link. The image will be displayed to the right of any close link text. Use "none" to not use any button image. Optionally, can use 1 of 3 SheerID hosted images by providing a value of "btn1", "btn2", or "btn3".</td>
+                    <td><code>"btn1"</code></td>
+                </tr>
+                <tr>
+                    <td><code>closeBtnTop</code></td>
+                    <td>No</td>
+                    <td>String containing the position of the close link from the top of the iFrame as a css value.</td>
+                    <td><code>"10px"</code></td>
+                </tr>
+                <tr>
+                    <td><code>closeBtnRight</code></td>
+                    <td>No</td>
+                    <td>String containing the position of the close link from the right of the iFrame as a css value.</td>
+                    <td><code>"10px"</code></td>
+                </tr>
+                <tr>
+                    <td><code>stopPropagation</code></td>
+                    <td>No</td>
+                    <td><code>true</code> will prevent the click event from bubbling up the DOM when clicking the link to activate the lightbox.</td>
+                    <td><code>false</code></td>
+                </tr>
+            </table>
+
+            <h4>Lightbox Usage Example</h4>
+            <pre><code>&lt;div&gt;
+&lt;a href="https://verify-demo.sheerid.com/my-military-app/" data-sheerid-iframe="true"&gt;Click here for a military discount&lt;/a&gt;
+&lt;a href="https://verify-demo.sheerid.com/my-student-app/" data-sheerid-iframe="true"&gt;Click here for a student discount&lt;/a&gt;
+&lt;/div&gt;
+&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+SheerID.load('iframe', '1.0', {
+    config : {
+        closeBtnTxt: "Close",
+        closeBtnImg: "none",
+        border: "2px solid black",
+        borderRadius: "6px",
+        closeBtnTop: "25px",
+        closeBtnRight: "25px",
+        closeBtnColor: "#000",
+        closeBtnFont: "16px Times New Roman",
+        top: "50px"
+    }
+});
+&lt;/script&gt;
+</code></pre>
+
+            <h4>Embedded Usage Example</h4>
+            <pre><code>&lt;div data-sheerid-iframe="true" data-target="https://verify-demo.sheerid.com/my-teacher-app/"&gt;&lt;/div&gt;
+&lt;script src="https://services.sheerid.com/jsapi/SheerID.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+SheerID.load('iframe', '1.0', {
+    config : {
+        lightbox: false
+    }
+});
+&lt;/script&gt;
+</code></pre>
+
+        </div>
+    </div>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-25697054-3', 'sheerid.com');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>

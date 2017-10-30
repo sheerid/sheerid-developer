@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | REST HTTP Errors</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+			</ul>
+			<h1>REST HTTP Errors</h1>
+			<p>The current version of the <a href="docs/">SheerID REST API (<code>0.5</code>)</a> may return a non-<code>2XX</code> HTTP status code if an unexpected condition occurs.</p>
+
+			<h2>Convention</h2>
+			<p>REST API resource methods that are invoked with sensible request parameters generally return a <code>200 OK</code> HTTP status in conjunction with the documented response body (e.g. a JSON-serialized object literal or array -- check the resource documentation's "Expected Response" section for resource-specific details), or a <code>204 No Content</code> HTTP status if the resource method does not return any content.</p>
+			<p>Some REST resource methods may return a <code>3XX</code> redirect to another resource, such as the canonical URL for a resource that is accessed via a friendly URL</p>
+			<p><code>4XX</code> status codes, such as <code>400 Bad Request</code>, <code>401 Unauthorized</code> and <code>404 Not Found</code> are used to indicate <em>user</em> error.  The user (API integrator or end-user) may be able to recover from this error by doing something to correct the request, whether it be fixing a data issue, supplying the correct URL or authenticating with valid credentials, for example.
+			<p><code>5XX</code> status codes, such as <code>500 Unexpected Server Error</code> are used to indicate a <em>service</em> error.  The only recourse the integrator may have for dealing with this type of error is resubmit the request after a period of time (instantly if there is an intermittent issue), or contact SheerID support for more information.  Needless to say, this type of error is prevented whenever possible.
+
+			<h2>Usage</h2>
+			<p>Upon receiving a response from a REST API resource, integrators should first ensure that the response HTTP status code matches the expected status.  Any REST resource method that does not return a <code>200 OK</code> HTTP status code as its primary expected HTTP status code (example: <a href="docs/token/revokeToken.html">Revoke Token</a>) will explicitly state the expected HTTP response status in the "Expected Response" section. If the HTTP status code does not match the expected response, the API client should not expect the full response payload as described in "Expected Response", but rather a minimal, JSON-serialized error payload containing the following properties:</p>
+			<table class="table table-bordered table-striped sheerid-green">
+				<tr>
+					<th>Property Name</th>
+					<th>Included?</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td><code>httpStatus</code></td>
+					<td>Always</td>
+					<td>The HTTP status code (this will always match the status code returned in the HTTP response headers)</td>
+				</tr>
+				<tr>
+					<td><code>message</code></td>
+					<td>Sometimes</td>
+					<td>A human-readable (English) error message providing additional detail as to the nature of the error.</td>
+				</tr>
+				<tr>
+					<td><code>errorCode</code></td>
+					<td>Sometimes</td>
+					<td>A machine-readable (numeric) code from the list of <a href="docs/errorCodes.html">SheerID REST API Error Codes</a> providing additional detail as to the nature of the error.</td>
+				</tr>
+				<tr>
+					<td><code>status</code></td>
+					<td>Always</td>
+					<td>
+						<div class="alert">This property will be removed in a future API version.  Please refer to <code>httpStatus</code> instead.</div>
+						<span>A string representation of the HTTP status code (this will always match the status code returned in the HTTP response headers).</span>
+					</td>
+				</tr>
+			</table>
+			<p>Resource methods that may return a non-<code>2XX</code> HTTP status for expected error conditions will list the potential HTTP status codes in the resource method documentation, under the "Errors (HTTP Status Codes)" section.</p>
+
+			<h2>Examples</h2>
+			<h4>Email address is not a valid format</h4>
+			<p>To ensure we have a valid method of contacting users as is necessary to communicate the status of a verification request, any request that contains an email address is validated to ensure the email address looks valid according to email address formatting rules.  Requests with invalid email addresss are rejected with a <code>400 Bad Request</code> status code.</p>
+			<h5>Request (<code>curl</code>)</h5>
+            <code class="block">curl -H "Authorization: Bearer $TOKEN" https://services-sandbox.sheerid.com/rest/0.5/verification -d organizationId=323 -d FIRST_NAME=Joe -d LAST_NAME=Test -d BIRTH_DATE=1992-12-05 -d EMAIL=malformed</code> 
+            <h5>Response (with headers)</h5>
+			<code class="block pre-line">HTTP/1.1 400 Bad Request
+			
+			{"message":"Invalid email address format.","httpStatus":400,"status":"400","errorCode":1002}</code>
+
+			<h4>Birth date indicates a person is under 13 years of age</h4>
+			<p>In order to protect the privacy of children online, SheerID does not accept data from individuals younger than 13 years of age.  As a result, verification attempts containing a birth date which indicates the individual is below this age will be rejected with a <code>400 Bad Request</code> status code.</p>
+			<h5>Request (<code>curl</code>)</h5>
+			<code class="block">curl -H "Authorization: Bearer $TOKEN" https://services-sandbox.sheerid.com/rest/0.5/verification -d organizationId=323 -d FIRST_NAME=Joe -d LAST_NAME=Test -d BIRTH_DATE=2002-12-05</code>
+			<h5>Response (with headers)</h5>
+			<code class="block pre-line">HTTP/1.1 400 Bad Request
+			
+			{"message":"Person is ineligible for verification because of age.","httpStatus":400,"status":"400","errorCode":1013}</code>
+
+			<h4>Date value does not match the expected format</h4>
+			<p>Unless otherwise specified, date values are expected to be in <code>YYYY-MM-DD</code> format (Example: 1969-12-28 represents December 28, 1969).  Verification requests submitted with a value for a date field such as <code>BIRTH_DATE</code> or <code>STATUS_START_DATE</code> that deviates from this format will be rejected with a <code>400 Bad Request</code> status code.</p>
+			<h5>Request (<code>curl</code>)</h5>
+			<code class="block">curl -H "Authorization: Bearer $TOKEN" https://services-sandbox.sheerid.com/rest/0.5/verification -d organizationId=323 -d FIRST_NAME=Joe -d LAST_NAME=Test -d BIRTH_DATE=12/5/95</code>
+			<h5>Response (with headers)</h5>
+			<code class="block pre-line">HTTP/1.1 400 Bad Request
+			
+			{"message":"Invalid date format.","httpStatus":400,"status":"400","errorCode":1001}</code>
+			
+			<h3>References</h3>
+			<p>Please refer to the complete list of <a target="_blank" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status Code Definitions</a> published with the HTTP/1.1 protocol spec.  The HTTP status codes returned by the SheerID REST API attempt to adhere to the HTTP specifications as much as is reasonably possible.</p>
+		</div>
+	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-25697054-3', 'sheerid.com');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>
+

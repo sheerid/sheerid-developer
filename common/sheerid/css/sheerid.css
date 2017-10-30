@@ -1,0 +1,216 @@
+body {
+	background-color: #59585a;
+}
+.page {
+	max-width: 1000px;
+	min-width: 900px;
+	margin: 1em auto;
+	background: #ffffff url(../img/bg-page.png) repeat-x top;
+}
+.content {
+	padding: 1em 2em;	
+}
+.navbar {
+	margin-bottom: 8px;
+}
+.navbar-inner {
+	border-top: 4px solid #d25f27;
+	background-image: none;
+	background-color: #d3d3d3;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	filter: none;
+}
+.brand {
+	background-image: url(../img/sheerid-logo-small.png);
+	padding: 0 !important;
+	margin: 0.5em 0 !important;
+	height: 30px;
+	width: 93px;
+}
+.brand span {
+	display: none;
+}
+.navbar .nav .dropdown-toggle .caret {
+	margin-top: 13px;
+	border-top-color: black;
+}
+.navbar .nav .open.dropdown .dropdown-toggle {
+	color: #D25F27;
+}
+.navbar .nav .open.dropdown .caret, .navbar .nav .dropdown-toggle:hover .caret {
+	border-top-color: #D25F27;
+}
+.navbar .dropdown-menu a:hover {
+	background-color: #D25F27;
+}
+.navbar a.title {
+	font-size: 20px;
+	line-height: 50px;
+	color: #555;
+	text-shadow: 2px 2px #dfdfdf;
+	font-weight: bold;
+	position: relative;
+	top: 2px;
+}
+.navbar a:hover.title {
+	text-decoration: none;
+}
+.navbar .divider-vertical {
+	height: 26px;
+	margin: 14px 9px 0;
+	background-color: #CCC;
+	border-right: 1px solid #AAA;
+}
+.navbar .nav > li > a {
+	line-height: 28px;
+	color: #555;
+	text-shadow: 0 -1px 0 #EEE;
+	font-size: 1.1em;
+	position: relative;
+	top: 2px;
+}
+
+.navbar .nav > li > a:hover {
+	color: #D25F27;
+}
+
+.navbar .nav > li:last-child:before {
+	content: '';
+	display: block;
+	height: 26px;
+	margin: 14px 0 0 0;
+	background-color: #CCC;
+	border-right: 1px solid #AAA;
+	float: right;
+	width: 1px;
+}
+
+.breadcrumb {
+	background: none;
+	box-shadow: none;
+	border: 0;
+	margin: 0;
+	padding: 7px;
+}
+
+code {
+	color: #D25F27;
+}
+
+code.block {
+	display: block;
+	margin: 0.5em 0.5em 1em;
+}
+
+code.pre-line {
+	white-space: pre-line;
+}
+
+table {
+	font-size: 1em;
+}
+
+table.sheerid-green th {
+	background-color: #d4e099 !important;
+}
+
+a.icon {
+	display: block;
+	float: left;
+	width: 16px;
+	height: 16px;
+}
+a.icon span {
+	display: none;
+}
+
+a.icon.info {
+	background-image: url(../img/icon-info.png);
+}
+.control-label em.required {
+	font-style: normal;
+}
+
+/* console */
+#results-title {
+	line-height: 2.1em;
+}
+.result-icon {
+	display: block;
+	float: left;
+	height: 48px;
+	width: 48px;
+	margin: 0 0.7em 0 0;
+}
+.result-icon span {
+	display: none;
+}
+#results.success .result-icon {
+	background-image: url(../img/check.png);
+}
+#results.failure .result-icon {
+	background-image: url(../img/x.png);
+}
+#results.inconclusive .result-icon {
+	background-image: url(../img/question.png);
+}
+.dropdown-menu a:hover [class^="icon-"], .dropdown-menu a:hover [class*=" icon-"] {
+	background-image: url("../img/glyphicons-halflings-white.png");
+}
+#results h2 .label {
+	position: relative;
+	top: -5px;
+}
+.pull-right .dropdown-menu {
+	left: auto;
+	right: 0;
+}
+#results.success blockquote {
+	border-color: #EFE;
+}
+#results.failure blockquote {
+	border-color: #FEE;
+}
+#results.inconclusive blockquote {
+	border-color: #FFE;
+}
+#results table {
+	color: black;
+}
+#results table td {
+	background-color: white;
+}
+.nowrap {
+	white-space: nowrap;
+}
+
+/* Image upload component */
+.image-upload {
+	padding: 1em;
+	max-width: 400px;
+	min-width: 150px;
+}
+.image-upload input[type="file"] {
+	max-width: 100%;
+}
+.image-upload .preview {
+	height: 100px;
+	width: 100px;
+	line-height: 100px;
+	text-align: center;
+	padding: 0.5em;
+	border: 1px solid #ccc;
+	background-color: #fefefe;
+	border-radius: 5px;
+}
+.image-upload .preview img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+}

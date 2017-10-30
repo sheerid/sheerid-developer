@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | General Developer Guidelines</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+			</ul>
+			
+			<h1>Rate Limiting</h1>
+
+			<h2>Overview</h2>
+
+			<p>To ensure responsible usage of the SheerID REST API, we have instituted various rate limiting policies for REST endpoints. Callers should familiarize themselves with these limits and implement applications with these policies in mind.</p>
+
+			<h2>Policies</h2>
+
+			<p>The applicable rate limit policies for a given endpoint are listed on that endpoint&#39;s documentation page, which can be found in the <a href="/docs/">REST Resources Documentation</a>. All requests against a given endpoint count against the rate limit, including user errors as indicated by a <code>4XX</code> response code.</p>
+
+			<p>Rate limits are enforced by counting the number of actions taken in a rolling window of time, such as the last 15 minutes. If the total number of actions in this window of time is higher than the allowable limit for that period, the request will be rejected with HTTP status code <code>429: Too Many Requests</code>. Callers can wait for older actions to expire out of the rolling window before re-submitting the request, or wait until the end of the window for the count to completely reset.</p>
+
+			<h2>Response Headers</h2>
+
+			<p>In order to convey rate limiting status to integrators, the SheerID REST API returns various HTTP response headers with information about the status of the applicable rate limit policies. Consult the table below for more information.</p>
+
+			<table class="table table-striped table-bordered sheerid-green">
+				<thead>
+					<tr>
+						<th style="width: 30%">Header Name</th>
+						<th>Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>X-RateLimit-Account-Limit</code></td>
+						<td>The total number of actions allowed by the policy</td>
+					</tr>
+					<tr>
+						<td><code>X-RateLimit-Account-Remaining</code></td>
+						<td>The number of actions remaining</td>
+					</tr>
+					<tr>
+						<td><code>X-RateLimit-Account-Reset</code></td>
+						<td>A UTC timestamp (millisecond resolution) that marks the
+							end of the rolling window. If no more actions subject to this
+							rate policy are taken, the remaining count will be equal to the
+							limit at this time.</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h2>Whitelisting</h2>
+
+			<p>Some API users will have a legitimate need for higher rate limit thresholds. SheerID can raise these limits upon request.</p>
+
+		</div>
+	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-25697054-3', 'sheerid.com');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Verification Scenarios</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</strong></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+			</ul>
+
+			<h1>Verification Scenarios</h1>
+			<p>The following is a list of common scenarios that integrators should keep in mind when testing applications of the SheerID verification API.</p>
+
+			<h2>Successful Verification</h2>
+			<h4 id="scenario-instant-success">Scenario: Instant Success</h4>
+			<p>
+				Issuing a valid verification request with a set of fields that represents an individual with a currently <strong>active</strong> affiliation results in a successful verification response, indicated by a <a href="docs/model.html#VerificationResponse">VerificationResponse</a> with its <code>result</code> property equal to <code>true</code>.
+			</p>
+			<blockquote><strong>Next Step:</strong> enable access to the protected content or offer</blockquote>
+
+			<h4 id="scenario-asset-review-success">Scenario: Document Upload Success</h4>
+			<p>
+				This scenario consists of the following steps:
+				<ol>
+					<li>Attempt and fail to instantly verify (see: <a href="#scenario-instant-false">Instant False</a>, <a href="#scenario-instant-inconclusive">Instant Inconclusive</a>, or <a href="#scenario-instant-not-supported">Instant Verification Not Supported</a>)</li>
+					<li>User uploads a document using <a href="docs/asset/upload.html">Asset Upload</a> API. This document can be submitted directly to SheerID as described in the <a href="direct-upload.html">Direct Asset Upload</a> documentation.</li>
+					<li>Uploaded document is reviewed by our team of document review specialists</li>
+					<li>Upon receiving a notification of the verification response being updated (or by periodically polling), the integrator performs an <a href="docs/verification/inquire.html">Inquire</a> request to fetch the updated <a href="docs/model.html#VerificationResponse">VerificationResponse</a></li>
+				</ol>
+				A successful response will be indicated by a <a href="docs/model.html#VerificationResponse">VerificationResponse</a> with its <code>result</code> property equal to <code>true</code>.
+			</p>
+			<blockquote><strong>Next Step:</strong> enable access to the protected content or offer</blockquote>
+
+			<h2>Failed Verification</h2>
+			<h4 id="scenario-instant-false">Scenario: Instant False</h4>
+			<p>
+				Issuing a valid verification request with a set of fields that represents an individual with a currently <strong>inactive</strong> affiliation results in a unsuccessful verification response, indicated by a <a href="docs/model.html#VerificationResponse">VerificationResponse</a> with its <code>result</code> property equal to <code>false</code>.
+				This scenario differs from <a href="#scenario-instant-inconclusive">Instant Inconclusive</a> because in this case, we are able to uniquely match an individual based on the data provided, but have conclusively determined that she does not currently have the desired affiliation status. 
+			</p>
+			<blockquote><strong>Next Step:</strong> integrator may choose to allow the user to proceed with a document upload or end the verification process with a message or alternative offer</blockquote>
+
+			<h4 id="scenario-instant-inconclusive">Scenario: Instant Inconclusive</h4>
+			<p>
+				Issuing a valid verification request with a set of fields that is unable to be matched in any of our authoritative affiliation data sources results in an inconclusive verification response, indicated by a <a href="docs/model.html#VerificationResponse">VerificationResponse</a> with its <code>result</code> property equal to <code>null</code>, and an empty <code>errors</code> array.
+				Reasons for an inability to match may include:
+				<ul>
+					<li>User entered incorrect/incomplete information, for example use of a nickname versus a full name</li>
+					<li>Data entry issues (typos)</li>
+					<li>Data coverage or data correctness issue within the data source itself</li>
+				</ul>
+			</p>
+			<blockquote><strong>Next Step:</strong> integrator should allow the user to proceed with a document upload to prove their affiliation</blockquote>
+
+			<h4 id="scenario-instant-failure-asset-review-failure">Scenario: Instant Failure and Document Upload Failure</h4>
+			<p>
+				This scenario has the same steps as described above in <a href="#scenario-asset-review-success">Document Upload Success</a>.  In this case, a failure response will be indicated by a <a href="docs/model.html#VerificationResponse">VerificationResponse</a> with its <code>result</code> property equal to <code>false</code> or <code>null</code>, and an <code>errors</code> array containing one or more errors that describe the reasons the document was rejected.
+			</p>
+			<blockquote><strong>Next Step:</strong> integrator may choose to display the error messages to the user and prompt for another document upload or end the verification process with a message or alternative offer</blockquote>
+
+			<h2>Errors</h2>
+			<div class="alert alert-info"><strong>Note:</strong> Refer to the <a href="general.html">General Developer Guidelines</a> for a discussion of our REST API error conventions.</div>
+			<h4 id="scenario-bad-request">Scenario: Bad Request</h4>
+			<p>
+				Integrators will encounter a <code>400 Bad Request</code> HTTP status code and no <a href="docs/model.html#VerificationResponse">VerificationResponse</a> payload in the following instances:
+				<ul>
+					<li>All required parameters are not supplied</li>
+					<li>Person is too young (we can only verify individuals older than 13 years)</li>
+					<li>Data format validation failure - email address, date format, etc.</li>
+					<li>Verification type is limited to <code>AUTHORITATIVE</code>, but no such data source exists to verify the specified organization or affiliation (Error code: <code>3</code>)</li>
+				</ul>
+				This type of error can generally be prevented by doing a reasonable amount of validation on the user inputs prior to sending a request to SheerID.
+			</p>
+			<blockquote><strong>Next Step:</strong> notify the end-user and/or fix the data and re-submit a valid request</blockquote>
+
+			<h4 id="scenario-instant-recoverable-error">Scenario: Recoverable Error</h4>
+			<p>
+				Issuing a valid verification request with a set of fields that is unable to be uniquely matched for a specific, recoverable reason will result in an inconclusive verification response, indicated by a <a href="docs/model.html#VerificationResponse">VerificationResponse</a> with its <code>result</code> property equal to <code>null</code>, and an <code>errors</code> array which contains one or more <a href="docs/model.html#Error">Error</a> objects containing a recoverable error <code>code</code>.
+				Recoverable errors include:
+				<ul>
+					<li>Unable to match a single individual (Error code: <code>40</code>)</li>
+					<li>Attempting to use organization name instead of organization ID, but name is ambiguous (Error code: <code>10</code>)</li>
+				</ul>
+			</p>
+			<blockquote><strong>Next Step:</strong> integrator should use the <a href="docs/verification/updateVerification.html">Update Verification</a> method to re-submit the verification request, providing additional information to resolve the issue</blockquote>
+
+			<h4 id="scenario-instant-not-supported">Scenario: Instant Verification Not Supported</h4>
+			<p>
+				Issuing a valid verification request with a set of fields that is unable to be <em>instantly</em> verified using any of our data sources will result in an inconclusive verification response, indicated by a <a href="docs/model.html#VerificationResponse">VerificationResponse</a> with its <code>result</code> property equal to <code>null</code>, and an <code>errors</code> array which contains one or more <a href="docs/model.html#Error">Error</a> objects containing a error <code>code</code> that indicates instant verification is not available.
+				Conditions where instant verification may not be available (either temporarily or permanently) include:
+				<ul>
+					<li>Data source is temporarily unavailable (Error code: <code>49</code>)</li>
+					<li>The data provided puts the individual into a segment which cannot be verified by the data source(s) used for that affiliation type, (for example, a military veteran who served prior to 1985) (Error code: <code>41</code>)</li>
+					<li>No instant data source exists to to verify this affiliation type, document review is the only way to perform a verification (Error code: <code>39</code>)</li>
+				</ul>
+			</p>
+			<blockquote><strong>Next Step:</strong> integrator should allow the user to proceed with a document upload to continue the verification process</blockquote>
+
+			<h3>References</h3>
+			<p>Other developer documents that may be helpful during the integration and testing process:</p>
+			<ul>
+				<li><a href="general.html">General Developer Guidelines</a></li>
+				<li><a href="docs/result-status.html">Verification Result and Status</a></li>
+				<li><a href="docs/errorCodes.html">List of API Error Codes</a></li>
+			</ul>
+		</div>
+	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-25697054-3', 'sheerid.com');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>

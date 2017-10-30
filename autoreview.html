@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SheerID Developer Center | Automatic Document Review</title>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/deprecated/css/bootstrap-responsive.css" type="text/css"/>
+	<link rel="stylesheet" href="/common/sheerid/css/sheerid.css" type="text/css"/>
+</head>
+<body>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="http://www.sheerid.com" title="SheerID"><span>SheerID</span></a>
+				<div>
+					<div class="pull-right">
+						<a href="/" class="title">SheerID Developer Center</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<ul class="breadcrumb">
+				<li><a href="/">Home</a></li>
+			</ul>
+			<h1>Automatic Document Review</h1>
+			
+			<h2>Overview</h2>
+			
+			<p>To speed up sandbox testing we have introduced the automatic document review feature where a specifically named file will pass or fail document review instantly. This allows the review process to be tested without the hassle of an actual manual document review for every test.</p>
+			
+			<h4>Supported Images:</h4>
+			
+			<ul>
+				<li><a href="image/SandboxTesting-ACCEPTED.png" download="SandboxTesting-ACCEPTED">SandboxTesting-ACCEPTED.png</a></li>
+				<li><a href="image/SandboxTesting-REJECTED.png" download="SandboxTesting-REJECTED">SandboxTesting-REJECTED.png</a></li>
+			</ul>
+			
+			<p>When testing document upload and review, renaming a file to one of the supported names will result in an automatic document review in the sandbox environment. Note that these special file names will have no effect in the production envrionment.</p>
+		</div>
+	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-25697054-3', 'sheerid.com');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>
