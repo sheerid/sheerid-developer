@@ -93,6 +93,14 @@
 					</td>
 </tr>
 <tr>
+	<td class="name"><nobr>includeCertifications</nobr></td>
+	<td><nobr>boolean</nobr></td>
+	<td>
+		include certifications in the verifications report
+					(default value: <code>false</code>)
+					</td>
+</tr>
+<tr>
 	<td class="name"><nobr>invoiceMode</nobr></td>
 	<td><nobr>boolean</nobr></td>
 	<td>
@@ -141,7 +149,7 @@
 	<td class="name"><nobr>templateId</nobr></td>
 	<td><nobr>string</nobr>[]</td>
 	<td>
-		a ID of a template by which to filter requests. If none are specified, will not filter by template. If multiple template IDs are specified, will use OR combination to filter requests.
+		a ID of a template by which to filter requests. If none are specified, will not filter by template. If multiple template IDs are specified, will use OR combination to filter requests.  If template IDs are supplied, the automatic assumption will be that certifications should not be included in the results set, and will override the value of "includeCertifications"
 					</td>
 </tr>
 </table>
