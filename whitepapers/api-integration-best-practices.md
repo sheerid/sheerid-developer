@@ -60,7 +60,7 @@ The SheerID API access token(s) used to authenticate requests should be protecte
 
 Consult the [verification field requirements](http://developer.sheerid.com/docs/fields.html) documentation for a list of required and optional data for each type of verification that you may wish to perform.
 
-If the type of verification you wish to perform requires an organizationId, it is recommended that you use the [Organization Combobox JSAPI component](http://developer.sheerid.com/jsapi.html#module-combobox) or otherwise obtain the [list of SheerID Organizations from the REST API](http://developer.sheerid.com/docs/organization/listOrganizations.html) so that you can help your users to select the SheerID Organization ID matching their organization (school, etc.). While it is possible to specify an organization by name, you will experience a decreased rate of instantly-verified requests due to name ambiguity/matching issues.
+If the type of verification you wish to perform requires an organizationId, it is recommended that you use the [Organization Combobox JSAPI component](http://developer.sheerid.com/jsapi.html#module-combobox) so that you can help your users to select the SheerID Organization ID matching their organization (school, etc.). While it is possible to specify an organization by name, you will experience a decreased rate of instantly-verified requests due to name ambiguity/matching issues.
 
 ### Unified VerificationResponse Handling
 
